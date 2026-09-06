@@ -1,0 +1,205 @@
+---
+title: Class Diagram - RITUN
+---
+
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'fontFamily': 'Inter, Segoe UI, sans-serif',
+    'lineColor': '#64748b'
+  }
+}}%%
+
+classDiagram
+
+    %% =========================
+    %% CORE APPLICATION
+    %% =========================
+
+    class RitunApp {
+        <<📱 Core>>
+        +startApp()
+        +showDashboard()
+        +checkLockedApplication()
+    }
+
+    class Dashboard {
+        <<📊 UI>>
+        +totalXP
+        +currentStreak
+        +longestStreak
+        +successfulSubmissions
+        +showProgress()
+        +showXP()
+        +showStreak()
+    }
+
+
+    %% =========================
+    %% APPLICATION LOCK
+    %% =========================
+
+    class ApplicationLock {
+        <<🔒 Controller>>
+        +checkApplication(packageName)
+        +lockApplication()
+        +unlockApplication()
+        +startAccessTimer()
+        +checkAccessTime()
+    }
+
+    class LockedApp {
+        <<📱 Entity>>
+        +appName
+        +packageName
+        +category
+        +isLocked
+        +activateLock()
+        +deactivateLock()
+    }
+
+
+    %% =========================
+    %% QURAN
+    %% =========================
+
+    class QuranSurah {
+        <<📖 Entity>>
+        +surahNumber
+        +name
+        +juzNumber
+        +getAyat()
+    }
+
+    class QuranAyat {
+        <<📝 Entity>>
+        +ayahNumber
+        +textArabic
+    }
+
+    class QuranTargetService {
+        <<🎲 Service>>
+        +getRandomAyat()
+        +getJuz30Ayat()
+    }
+
+
+    %% =========================
+    %% RECITATION
+    %% =========================
+
+    class RecitationSubmission {
+        <<🎙️ Transaction>>
+        +audioPath
+        +transcript
+        +status
+        +submittedAt
+        +recordAudio()
+        +submitRecitation()
+    }
+
+    class RecitationEvaluation {
+        <<📈 Result>>
+        +werScore
+        +cerScore
+        +result
+        +evaluatedAt
+        +showResult()
+    }
+
+
+    %% =========================
+    %% AI SERVICES
+    %% =========================
+
+    class SpeechRecognitionService {
+        <<🤖 Service>>
+        +transcribe(audio)
+        +returnTranscript()
+    }
+
+    class RecitationChecker {
+        <<🧠 Engine>>
+        +calculateWER()
+        +calculateCER()
+        +compareRecitation()
+        +determineResult()
+    }
+
+
+    %% =========================
+    %% PROGRESS
+    %% =========================
+
+    class Progress {
+        <<⭐ Entity>>
+        +totalSuccessfulSubmissions
+        +totalXP
+        +currentStreak
+        +longestStreak
+        +lastSubmissionAt
+        +addXP()
+        +updateStreak()
+        +updateProgress()
+    }
+
+
+    %% =========================
+    %% RELATIONSHIPS
+    %% =========================
+
+    RitunApp "1" *-- "1" Dashboard
+    RitunApp "1" *-- "1" ApplicationLock
+    RitunApp "1" *-- "1" Progress
+
+    ApplicationLock "1" o-- "*" LockedApp
+
+    QuranSurah "1" *-- "*" QuranAyat
+
+    ApplicationLock --> QuranTargetService : requests target
+
+    QuranTargetService --> QuranAyat : selects random ayat
+
+    QuranAyat "1" --> "*" RecitationSubmission : target
+
+    RecitationSubmission "1" --> "1" SpeechRecognitionService : processed by
+
+    SpeechRecognitionService --> RecitationSubmission : returns transcript
+
+    RecitationSubmission "1" *-- "1" RecitationEvaluation
+
+    RecitationEvaluation --> RecitationChecker : evaluated by
+
+    RecitationChecker --> RecitationEvaluation : produces result
+
+    RecitationEvaluation --> ApplicationLock : unlock / retry
+
+    RecitationEvaluation --> Progress : update progress
+
+    Progress --> Dashboard : displayed on
+
+
+    %% =========================
+    %% STYLING
+    %% =========================
+
+    classDef coreDef fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a
+    classDef lockDef fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87
+    classDef quranDef fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+    classDef reciteDef fill:#ccfbf1,stroke:#0d9488,stroke-width:2px,color:#115e59
+    classDef aiDef fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e
+    classDef progressDef fill:#e0e7ff,stroke:#4f46e5,stroke-width:2px,color:#312e81
+
+    cssClass "RitunApp" coreDef
+    cssClass "Dashboard" coreDef
+    cssClass "ApplicationLock" lockDef
+    cssClass "LockedApp" lockDef
+    cssClass "QuranSurah" quranDef
+    cssClass "QuranAyat" quranDef
+    cssClass "QuranTargetService" quranDef
+    cssClass "RecitationSubmission" reciteDef
+    cssClass "RecitationEvaluation" reciteDef
+    cssClass "SpeechRecognitionService" aiDef
+    cssClass "RecitationChecker" aiDef
+    cssClass "Progress" progressDef
+

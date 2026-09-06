@@ -1,0 +1,252 @@
+erDiagram
+    USERS ||--o{ USER_LOCKED_APPS : "mengkonfigurasi"
+    USERS ||--o{ RECITATION_SUBMISSIONS : "menyetorkan"
+    USERS ||--|| USER_PROGRESS : "memiliki"
+    USERS ||--o{ USER_ACHIEVEMENTS : "meraih"
+    USERS ||--o{ DAILY_ACTIVITIES : "mencatat"
+    USERS ||--o{ UNLOCK_SESSIONS : "memulai"
+    USERS ||--|| USER_SETTINGS : "mengatur"
+
+    LOCKED_APPS ||--o{ USER_LOCKED_APPS : "ditugaskan_ke"
+
+    QURAN_SURAHS ||--o{ QURAN_AYAT : "berisi"
+    QURAN_AYAT ||--o{ RECITATION_SUBMISSIONS : "menjadi_target"
+    QURAN_SURAHS ||--o{ USER_SURAH_PROGRESS : "dipantau_oleh"
+    USERS ||--o{ USER_SURAH_PROGRESS : "mempunyai"
+
+    RECITATION_SUBMISSIONS ||--|| RECITATION_EVALUATIONS : "menerima"
+    RECITATION_SUBMISSIONS }o--|| UNLOCK_SESSIONS : "bagian_dari"
+
+    ACHIEVEMENTS ||--o{ USER_ACHIEVEMENTS : "diraih_dalam"
+
+    %% =============================================
+    %% TABEL: USERS
+    %% Sumber UI: Dashboard (greeting "Assalamu'alaikum, Kaikii"),
+    %%            Pengaturan > Akun (Nama Pengguna),
+    %%            Narasi (Firebase Authentication)
+    %% =============================================
+    USERS {
+        int id PK "ID unik pengguna"
+        string name "Nama pengguna (tampil di dashboard & pengaturan)"
+        string email UK "Email untuk autentikasi (Firebase Auth)"
+        string firebase_uid UK "UID dari Firebase Authentication"
+        string avatar_url "URL foto profil pengguna"
+        datetime created_at "Waktu pembuatan akun"
+        datetime updated_at "Waktu pembaruan terakhir"
+    }
+
+    %% =============================================
+    %% TABEL: LOCKED_APPS
+    %% Sumber UI: Dashboard > Aplikasi Terkunci (Instagram, TikTok, Game)
+    %% Narasi: Target terbatas pada 3 aplikasi distraksi
+    %% =============================================
+    LOCKED_APPS {
+        int id PK "ID unik aplikasi"
+        string app_name "Nama aplikasi (Instagram, TikTok, Game)"
+        string package_name UK "Package name Android (com.instagram.android, dll)"
+        string icon_url "URL ikon aplikasi"
+        string category "Kategori (social_media / game)"
+        datetime created_at "Waktu entri dibuat"
+    }
+
+    %% =============================================
+    %% TABEL: USER_LOCKED_APPS
+    %% Sumber UI: Dashboard > Aplikasi Terkunci (badge lock merah),
+    %%            Pengaturan > Kelola aplikasi terkunci, Status Kunci toggle
+    %% =============================================
+    USER_LOCKED_APPS {
+        int id PK "ID unik konfigurasi"
+        int user_id FK "Referensi ke USERS"
+        int locked_app_id FK "Referensi ke LOCKED_APPS"
+        boolean is_locked "Status kunci aktif/nonaktif (toggle di dashboard)"
+        datetime created_at "Waktu konfigurasi dibuat"
+        datetime updated_at "Waktu pembaruan terakhir"
+    }
+
+    %% =============================================
+    %% TABEL: QURAN_SURAHS
+    %% Sumber UI: Progres > Progres Juz 30 (daftar surat: An-Naba, An-Nazi'at, dll),
+    %%            Lock Screen Overlay (QS. Al-Humazah: 1-3)
+    %% Narasi: Cakupan Juz 30 (37 surat)
+    %% =============================================
+    QURAN_SURAHS {
+        int id PK "ID unik surat"
+        int surah_number UK "Nomor surat dalam Al-Quran (78-114)"
+        string name_latin "Nama surat latin (An-Naba, An-Nazi'at, dll)"
+        string name_arabic "Nama surat dalam aksara Arab"
+        string translation "Arti nama surat (Berita Besar, Malaikat Pencabut, dll)"
+        int total_ayat "Jumlah ayat dalam surat (40, 46, 42, dll)"
+        int juz_number "Nomor juz (30 untuk Juz Amma)"
+        datetime created_at "Waktu entri dibuat"
+    }
+
+    %% =============================================
+    %% TABEL: QURAN_AYAT
+    %% Sumber UI: Lock Screen Overlay (teks Arab + terjemahan ayat target),
+    %%            Rekaman Suara (ayat yang harus dibacakan)
+    %% Narasi: Dataset terstruktur per ayat untuk evaluasi
+    %% =============================================
+    QURAN_AYAT {
+        int id PK "ID unik ayat"
+        int surah_id FK "Referensi ke QURAN_SURAHS"
+        int ayah_number "Nomor ayat dalam surat"
+        text text_arabic "Teks ayat dalam aksara Arab (untuk ditampilkan & evaluasi)"
+        text text_translation "Terjemahan bahasa Indonesia"
+        datetime created_at "Waktu entri dibuat"
+    }
+
+    %% =============================================
+    %% TABEL: UNLOCK_SESSIONS
+    %% Sumber UI: Dashboard > Sisa Waktu (24:30 menit tersisa, Sesi Berjalan),
+    %%            Pengaturan > Durasi interval (30 menit)
+    %% Narasi: Mekanisme Recite-to-Unlock memberi akses terbatas waktu
+    %% =============================================
+    UNLOCK_SESSIONS {
+        int id PK "ID unik sesi"
+        int user_id FK "Referensi ke USERS"
+        int locked_app_id FK "Aplikasi yang dibuka dalam sesi ini"
+        datetime started_at "Waktu sesi dimulai (setelah setoran berhasil)"
+        datetime expires_at "Waktu sesi berakhir (durasi interval dari pengaturan)"
+        int duration_minutes "Durasi sesi dalam menit (default 30)"
+        string status "Status sesi (active / expired / ended_early)"
+        datetime created_at "Waktu record dibuat"
+    }
+
+    %% =============================================
+    %% TABEL: RECITATION_SUBMISSIONS
+    %% Sumber UI: Rekaman Suara (tombol rekam, timer 00:03, waveform),
+    %%            Lock Screen Overlay (target ayat yang harus dibaca)
+    %% Narasi: Pengguna merekam suara > Whisper transkripsi > evaluasi
+    %% =============================================
+    RECITATION_SUBMISSIONS {
+        int id PK "ID unik setoran"
+        int user_id FK "Referensi ke USERS"
+        int ayah_id FK "Referensi ke QURAN_AYAT (ayat target)"
+        int unlock_session_id FK "Referensi ke UNLOCK_SESSIONS (nullable, untuk setoran ulang)"
+        string audio_file_path "Path file audio rekaman suara pengguna"
+        int duration_seconds "Durasi rekaman dalam detik"
+        text transcript "Hasil transkripsi dari Whisper (teks Arab)"
+        string status "Status setoran (pending / correct / incorrect)"
+        datetime submitted_at "Waktu setoran diajukan"
+    }
+
+    %% =============================================
+    %% TABEL: RECITATION_EVALUATIONS
+    %% Sumber UI: Success Screen (Masya Allah! Akses dibuka!),
+    %%            Lock Screen Overlay (tampilkan pembenaran jika salah)
+    %% Narasi: Quran Recitation Checker menggunakan WER/CER + Similarity
+    %% =============================================
+    RECITATION_EVALUATIONS {
+        int id PK "ID unik evaluasi"
+        int submission_id FK "Referensi ke RECITATION_SUBMISSIONS"
+        float wer_score "Word Error Rate dari perbandingan teks"
+        float cer_score "Character Error Rate dari perbandingan teks"
+        float similarity_score "Skor kemiripan keseluruhan (0.0 - 1.0)"
+        string result "Hasil evaluasi (passed / failed)"
+        text correction_text "Teks pembenaran jika bacaan salah (ditampilkan di pop-up)"
+        datetime evaluated_at "Waktu evaluasi selesai"
+    }
+
+    %% =============================================
+    %% TABEL: USER_PROGRESS
+    %% Sumber UI: Dashboard stats (Total Setoran: 12, Streak Hari: 5, Ayat Benar: 145),
+    %%            Success Screen (5 Hari Berturut-turut, XP +1),
+    %%            Progres > Streak Hafalan (5 Hari Berturut-turut!)
+    %% =============================================
+    USER_PROGRESS {
+        int id PK "ID unik progres"
+        int user_id FK "Referensi ke USERS (one-to-one)"
+        int total_submissions "Total setoran yang pernah dilakukan (12 di dashboard)"
+        int total_correct_ayat "Total ayat yang benar (145 di dashboard)"
+        int total_xp "Total XP yang diperoleh (gamifikasi)"
+        int current_streak "Streak hari saat ini (5 di dashboard)"
+        int longest_streak "Streak terpanjang yang pernah dicapai"
+        float juz30_completion_percent "Persentase penyelesaian Juz 30 (45% di halaman progres)"
+        datetime last_submission_at "Waktu setoran terakhir"
+        datetime updated_at "Waktu pembaruan terakhir"
+    }
+
+    %% =============================================
+    %% TABEL: USER_SURAH_PROGRESS
+    %% Sumber UI: Progres > Progres Juz 30
+    %%   (An-Naba: Selesai, An-Nazi'at: 75%, 'Abasa: 0%)
+    %% =============================================
+    USER_SURAH_PROGRESS {
+        int id PK "ID unik progres surat"
+        int user_id FK "Referensi ke USERS"
+        int surah_id FK "Referensi ke QURAN_SURAHS"
+        int completed_ayat "Jumlah ayat yang sudah benar"
+        float completion_percent "Persentase penyelesaian surat (0-100)"
+        string status "Status (not_started / in_progress / completed)"
+        datetime completed_at "Waktu surat selesai seluruhnya (nullable)"
+        datetime updated_at "Waktu pembaruan terakhir"
+    }
+
+    %% =============================================
+    %% TABEL: DAILY_ACTIVITIES
+    %% Sumber UI: Progres > Aktivitas 7 Hari (bar chart Sen-Min),
+    %%            Rata-rata 24 menit/hari
+    %% =============================================
+    DAILY_ACTIVITIES {
+        int id PK "ID unik aktivitas harian"
+        int user_id FK "Referensi ke USERS"
+        date activity_date UK "Tanggal aktivitas (unik per user)"
+        int total_recitations "Jumlah setoran pada hari tersebut"
+        int correct_recitations "Jumlah setoran benar pada hari tersebut"
+        int duration_minutes "Total durasi murajaah dalam menit (tinggi bar chart)"
+        datetime created_at "Waktu record dibuat"
+        datetime updated_at "Waktu pembaruan terakhir"
+    }
+
+    %% =============================================
+    %% TABEL: ACHIEVEMENTS
+    %% Sumber UI: Progres > Pencapaian (3 Hari Streak, 7 Hari Streak,
+    %%            Juz 30 Selesai, Setoran Sempurna) - 1 dari 4 dibuka
+    %% =============================================
+    ACHIEVEMENTS {
+        int id PK "ID unik pencapaian"
+        string name "Nama pencapaian (3 Hari Streak, Juz 30 Selesai, dll)"
+        string description "Deskripsi pencapaian"
+        string icon "Nama ikon pencapaian"
+        string achievement_type "Tipe (streak / completion / perfect_score)"
+        int target_value "Nilai target untuk membuka (3, 7, 37, dll)"
+        datetime created_at "Waktu entri dibuat"
+    }
+
+    %% =============================================
+    %% TABEL: USER_ACHIEVEMENTS
+    %% Sumber UI: Progres > Pencapaian
+    %%   (3 Hari Streak: Selesai/Diraih 2 hari lalu,
+    %%    7 Hari Streak: 5 dari 7 hari / progress bar 71%,
+    %%    Juz 30 Selesai: progress bar 45%,
+    %%    Setoran Sempurna: Terkunci/Belum dimulai)
+    %% =============================================
+    USER_ACHIEVEMENTS {
+        int id PK "ID unik pencapaian pengguna"
+        int user_id FK "Referensi ke USERS"
+        int achievement_id FK "Referensi ke ACHIEVEMENTS"
+        int current_value "Nilai progres saat ini (5 dari 7)"
+        float progress_percent "Persentase progres (71%)"
+        string status "Status (locked / in_progress / unlocked)"
+        datetime unlocked_at "Waktu pencapaian diraih (nullable)"
+        datetime updated_at "Waktu pembaruan terakhir"
+    }
+
+    %% =============================================
+    %% TABEL: USER_SETTINGS
+    %% Sumber UI: Pengaturan
+    %%   - Penguncian Aplikasi: Status Kunci (toggle)
+    %%   - Interval Waktu: Durasi interval (30 menit), Penguncian berkala (toggle)
+    %%   - Notifikasi: Pengingat harian (toggle), Waktu pengingat (08:00 AM)
+    %% =============================================
+    USER_SETTINGS {
+        int id PK "ID unik pengaturan"
+        int user_id FK "Referensi ke USERS (one-to-one)"
+        boolean is_lock_active "Status kunci aktif (toggle Status Kunci)"
+        int interval_duration_minutes "Durasi interval unlock dalam menit (default 30)"
+        boolean is_periodic_lock_enabled "Penguncian berkala aktif (toggle)"
+        boolean is_daily_reminder_enabled "Pengingat harian aktif (toggle)"
+        time reminder_time "Waktu pengingat harian (default 08:00)"
+        datetime created_at "Waktu pengaturan dibuat"
+        datetime updated_at "Waktu pembaruan terakhir"
+    }

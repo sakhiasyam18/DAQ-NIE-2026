@@ -1,0 +1,108 @@
+---
+title: Ritun - Entity Relationship Diagram
+---
+
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#D1FAE5',
+    'primaryBorderColor': '#059669',
+    'primaryTextColor': '#064E3B',
+    'lineColor': '#6B7280',
+    'textColor': '#1F2937',
+    'fontSize': '14px',
+    'fontFamily': 'Inter, SF Pro Text, system-ui, sans-serif'
+  }
+}}%%
+
+erDiagram
+
+    %% ══════════════════════════════════════════════════
+    %% MODUL PENGUNCIAN APLIKASI
+    %% ══════════════════════════════════════════════════
+
+    LOCKED_APPS {
+        int id PK "ID unik"
+        string app_name "Nama aplikasi target"
+        string package_name UK "Package name Android"
+        string category "Kategori aplikasi"
+        boolean is_active "Status aplikasi"
+    }
+
+    APPLICATION_LOCKED_APPS {
+        int id PK "ID unik"
+        int locked_app_id FK "Ref ke LOCKED_APPS"
+        boolean is_locked "Status kunci"
+        datetime created_at "Waktu dibuat"
+        datetime updated_at "Waktu diperbarui"
+    }
+
+
+    %% ══════════════════════════════════════════════════
+    %% MODUL AL-QURAN
+    %% ══════════════════════════════════════════════════
+
+    QURAN_SURAH {
+        int id PK "ID unik surat"
+        int surah_number UK "Nomor surat"
+        string name "Nama surat"
+        int juz_number "Nomor juz"
+    }
+
+    QURAN_AYAT {
+        int id PK "ID unik ayat"
+        int surah_id FK "Ref ke QURAN_SURAH"
+        int ayat_number "Nomor ayat"
+        text text_arabic "Teks ayat Arab"
+    }
+
+
+    %% ══════════════════════════════════════════════════
+    %% MODUL SETORAN & EVALUASI
+    %% ══════════════════════════════════════════════════
+
+    RECITATION_SUBMISSIONS {
+        int id PK "ID unik setoran"
+        int ayat_id FK "Ref ke QURAN_AYAT"
+        string audio_path "Path audio rekaman"
+        text transcript "Hasil transkripsi"
+        string status "Status setoran"
+        datetime submitted_at "Waktu setoran"
+    }
+
+    RECITATION_EVALUATIONS {
+        int id PK "ID unik evaluasi"
+        int submission_id FK "Ref ke RECITATION_SUBMISSIONS"
+        float wer_score "Word Error Rate"
+        float cer_score "Character Error Rate"
+        string result "Hasil evaluasi"
+        datetime evaluated_at "Waktu evaluasi"
+    }
+
+
+    %% ══════════════════════════════════════════════════
+    %% MODUL PROGRES
+    %% ══════════════════════════════════════════════════
+
+    APPLICATION_PROGRESS {
+        int id PK "ID unik progres"
+        int total_successful_submissions "Total setoran berhasil"
+        int total_xp "Total XP"
+        int current_streak "Streak saat ini"
+        int longest_streak "Streak terpanjang"
+        datetime last_submission_at "Waktu setoran terakhir"
+        datetime updated_at "Waktu diperbarui"
+    }
+
+
+    %% ══════════════════════════════════════════════════
+    %% RELASI
+    %% ══════════════════════════════════════════════════
+
+    LOCKED_APPS ||--o{ APPLICATION_LOCKED_APPS : "dipilih_sebagai"
+
+    QURAN_SURAH ||--o{ QURAN_AYAT : "berisi"
+
+    QURAN_AYAT ||--o{ RECITATION_SUBMISSIONS : "menjadi_target"
+
+    RECITATION_SUBMISSIONS ||--|| RECITATION_EVALUATIONS : "dievaluasi_dalam"

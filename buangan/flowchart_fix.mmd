@@ -1,0 +1,38 @@
+
+flowchart LR
+    User((Pengguna))
+
+
+    subgraph RITUN["Sistem Ritun"]
+        UC1([Membuka Dashboard])
+        UC2([Membuka Instagram])
+        UC3([Mendapatkan Ayat Random Juz 30])
+        UC4([Membaca Ayat Al-Qur'an])
+        UC5([Membaca Ayat dengan Benar])
+        UC6([Unlock Aplikasi])
+        UC7([Aplikasi Terkunci])
+    end
+
+
+    User --> UC1
+    User --> UC2
+    User --> UC4
+    User --> UC5
+
+
+    UC2 --> UC7
+    UC7 --> UC3
+    UC3 --> UC4
+    UC4 --> UC5
+    UC5 --> UC6
+    UC6 --> UC2
+
+%% Versi ini lebih cocok kalau mau dimasukkan ke laporan:
+
+%% Alurnya:
+%% Buka Instagram → terkunci → sistem memberikan ayat random Juz 30 → pengguna membaca → verifikasi → benar → Instagram terbuka.
+
+%% Kalau ini untuk diagram UML skripsi/laporan, versi kedua lebih mudah dijelaskan saat presentasi.
+
+%% Files, images, and data analysis are unavailable until usage resets at 5:26 AM. Continue chatting with text only, or upgrade for more access.
+%% Upgrade to Plus

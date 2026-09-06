@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Dashboard Utama - Ritun</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ios: {
+            bg: "#F2F2F7",
+            card: "#FFFFFF",
+            secondary: "#8E8E93",
+            tertiary: "#C7C7CC",
+            border: "#E5E5EA",
+            green: "#34C759",
+            blue: "#007AFF",
+            orange: "#FF9500",
+            red: "#FF3B30",
+            text: "#1C1C1E",
+            subtext: "#636366"
+          }
+        },
+        fontFamily: {
+          sans: [
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "'SF Pro Text'",
+            "'SF Pro Display'",
+            "system-ui",
+            "sans-serif"
+          ]
+        },
+        boxShadow: {
+          ios: "0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
+          'ios-float': "0 8px 24px rgba(0, 0, 0, 0.08)",
+          'ios-switch': "0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.06)"
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    -webkit-tap-highlight-color: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, sans-serif;
+  }
+  .progress-ring__circle {
+    transition: stroke-dashoffset 0.4s ease;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+  /* Native iOS Switch styling */
+  .ios-switch-input:checked ~ .ios-switch-track {
+    background-color: #34C759;
+  }
+  .ios-switch-input:checked ~ .ios-switch-thumb {
+    transform: translateX(20px);
+  }
+  /* Remove white background box from Ritun logo cleanly */
+  .logo-clean {
+    mix-blend-mode: multiply;
+  }
+</style>
+</head>
+<body class="bg-ios-bg text-ios-text antialiased min-h-screen pb-28 selection:bg-ios-green/20">
+<!-- iOS Status Bar & Top Header -->
+<header class="sticky top-0 z-40 bg-ios-bg/85 backdrop-blur-xl border-b border-ios-border/80 transition-colors">
+<div class="max-w-md mx-auto px-5 pt-3 pb-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Ritun logo integrated seamlessly without white box -->
+<div class="w-10 h-10 rounded-xl bg-transparent flex items-center justify-center overflow-hidden">
+<img alt="Ritun Logo" class="w-9 h-9 object-contain logo-clean" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ0WV3ohnZscX4-nyagDn4o35DIwByo1RA2xebk7pqwdzRoyyUfBBYV4hR-1CWUMCoOvycmgWXd8K_kUpAKZNwa2kN1WioRx59aslynYMBqg58qdpXfhj0Lxe7KCDd-u9rN3edHjySCFh-c8wJGBFCn_apIahpdU7hDcdSukLyfxB3RuOjO1e-LKnj4_Rmb6UtBrCOGf6EmcmNFVzykgR89bHvA0tynp15mGpe5vTPq7o3aINnXkVerehx88PShe7M"/>
+</div>
+<div>
+<p class="text-[13px] leading-tight font-medium text-ios-subtext">Assalamu'alaikum,</p>
+<h1 class="text-[22px] leading-tight font-bold tracking-tight text-ios-text">Kaikii</h1>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Notifikasi" class="w-10 h-10 rounded-full bg-white border border-ios-border flex items-center justify-center text-ios-text active:scale-95 transition-all shadow-ios">
+<span class="material-symbols-outlined text-[21px] text-ios-text">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-4 pt-4 space-y-4">
+<!-- Status Kunci Card -->
+<section class="bg-ios-card rounded-2xl p-5 border border-ios-border shadow-ios flex flex-col items-center text-center">
+<!-- Icon pill -->
+<div class="w-16 h-16 rounded-2xl bg-[#34C759]/10 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[36px] text-ios-green" id="lock-icon" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<h2 class="text-[20px] font-bold tracking-tight text-ios-text" id="status-title">Kunci Aktif</h2>
+<p class="text-[13px] text-ios-subtext mt-0.5 mb-4" id="status-desc">Hafalkan untuk Membuka Kunci.</p>
+<!-- iOS Native Switch Component -->
+<label class="relative inline-flex items-center cursor-pointer select-none">
+<input checked="" class="sr-only ios-switch-input" id="toggle" type="checkbox"/>
+<div class="ios-switch-track w-[51px] h-[31px] bg-ios-border rounded-full transition-colors duration-300"></div>
+<div class="ios-switch-thumb absolute left-[2px] top-[2px] bg-white w-[27px] h-[27px] rounded-full shadow-ios-switch transition-transform duration-300 flex items-center justify-center">
+</div>
+</label>
+</section>
+<!-- Sisa Waktu Card -->
+<section class="bg-ios-card rounded-2xl p-6 border border-ios-border shadow-ios flex flex-col items-center">
+<div class="w-full flex items-center justify-between mb-4">
+<h3 class="text-[16px] font-semibold text-ios-text tracking-tight">Sisa Waktu</h3>
+<span class="text-[12px] font-medium text-ios-green bg-ios-green/10 px-2.5 py-0.5 rounded-full">Sesi Berjalan</span>
+</div>
+<!-- Circular Timer Progress -->
+<div class="relative w-48 h-48 flex items-center justify-center my-1">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 120 120">
+<!-- Subtle iOS Gray Track -->
+<circle cx="60" cy="60" fill="transparent" r="50" stroke="#E5E5EA" stroke-linecap="round" stroke-width="8"></circle>
+<!-- iOS Green Active Progress Ring (2 * PI * 50 = 314.159) -->
+<circle class="progress-ring__circle text-ios-green" cx="60" cy="60" fill="transparent" r="50" stroke="currentColor" stroke-linecap="round" stroke-width="8" style="stroke-dasharray: 314.16; stroke-dashoffset: 100;"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-[34px] font-bold tracking-tight text-ios-text leading-none">24:30</span>
+<span class="text-[12px] font-medium text-ios-subtext tracking-wide uppercase mt-1">Menit Tersisa</span>
+</div>
+</div>
+</section>
+<!-- Stats Row -->
+<section class="grid grid-cols-3 gap-3">
+<!-- Stat 1 -->
+<div class="bg-ios-card rounded-2xl p-3.5 border border-ios-border shadow-ios flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-ios-blue/10 flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[18px] text-ios-blue">menu_book</span>
+</div>
+<span class="text-[20px] font-bold text-ios-text tracking-tight leading-snug">12</span>
+<span class="text-[11px] font-medium text-ios-subtext mt-0.5">Total Setoran</span>
+</div>
+<!-- Stat 2 -->
+<div class="bg-ios-card rounded-2xl p-3.5 border border-ios-border shadow-ios flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-ios-orange/10 flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[18px] text-ios-orange" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="text-[20px] font-bold text-ios-text tracking-tight leading-snug">5</span>
+<span class="text-[11px] font-medium text-ios-subtext mt-0.5">Streak Hari</span>
+</div>
+<!-- Stat 3 -->
+<div class="bg-ios-card rounded-2xl p-3.5 border border-ios-border shadow-ios flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-ios-green/10 flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[18px] text-ios-green" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<span class="text-[20px] font-bold text-ios-text tracking-tight leading-snug">145</span>
+<span class="text-[11px] font-medium text-ios-subtext mt-0.5">Ayat Benar</span>
+</div>
+</section>
+<!-- Locked Apps Section -->
+<section class="bg-ios-card rounded-2xl p-4 border border-ios-border shadow-ios">
+<div class="flex items-center justify-between mb-3 px-1">
+<h3 class="text-[16px] font-semibold text-ios-text tracking-tight">Aplikasi Terkunci</h3>
+<span class="text-[13px] font-medium text-ios-blue">Kelola</span>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<!-- Instagram App -->
+<div class="bg-ios-bg rounded-xl p-3 flex flex-col items-center justify-center relative border border-ios-border/60">
+<div class="absolute top-1.5 right-1.5 w-5 h-5 bg-ios-red rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[11px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<img alt="Instagram" class="w-12 h-12 mb-1.5 rounded-2xl shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_25uSubdO4h7pH3KM1fYv8e_ALCm6Qry2QRDIGJzpMu1JymDL7vlOX3JxKMliYldKK-cyMtm8ByNsgair_ot9rPvXGkmYlrpWg81p_xA41zitkKuGu86N7JTT6aeaZMtOVN6KxqfeMIbMsP6nGsx6ALpwg5HGNR8zqayimPQzDp5IzwqDQY4NpXh2Get0RPRhp-shwcwHJ_6P2d4o9HHMjgGRKa6i9aNGEQhgApoEGfVWjXMFzpY"/>
+<span class="text-[12px] font-semibold text-ios-text truncate w-full text-center">Instagram</span>
+</div>
+<!-- TikTok App -->
+<div class="bg-ios-bg rounded-xl p-3 flex flex-col items-center justify-center relative border border-ios-border/60">
+<div class="absolute top-1.5 right-1.5 w-5 h-5 bg-ios-red rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[11px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<img alt="TikTok" class="w-12 h-12 mb-1.5 rounded-2xl shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu4ycaFhBtoI1jmndRBSKnrmchEvIVWxvDx7lrSgbZKvz-rLvRKVuiuLz_nQE8QQYv1tXQ11PqsAUeTEi4ax6fqPcYOBgked7t2is8ubZcKzAkWKXURFfwue4bUhvHYZEPFVrSEYM-m1WX-lL8DEq_Rz-zuEMncsFDbdyzRYdwCwBzg9QqzYEZRN6xQy1lV0_AGmN7TRi8xAHP2sde0_QbmItMTgyzQNP4OsjYZc_94c7QQscowPc"/>
+<span class="text-[12px] font-semibold text-ios-text truncate w-full text-center">TikTok</span>
+</div>
+<!-- Game App -->
+<div class="bg-ios-bg rounded-xl p-3 flex flex-col items-center justify-center relative border border-ios-border/60">
+<div class="absolute top-1.5 right-1.5 w-5 h-5 bg-ios-red rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[11px]" style="font-variation-settings: 'FILL' 1;">lock</span>
+</div>
+<div class="w-12 h-12 mb-1.5 rounded-2xl bg-gradient-to-br from-[#5856D6] to-[#AF52DE] flex items-center justify-center text-white shadow-sm">
+<span class="material-symbols-outlined text-[26px]">sports_esports</span>
+</div>
+<span class="text-[12px] font-semibold text-ios-text truncate w-full text-center">Game</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation: iOS Translucent Frosted Glass Tab Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-2xl border-t border-ios-border/90 px-6 pt-2 pb-7 shadow-lg">
+<div class="max-w-md mx-auto flex justify-around items-center">
+<!-- Active Tab: Beranda -->
+<a class="flex flex-col items-center justify-center text-ios-green group" href="#">
+<span class="material-symbols-outlined text-[25px]" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-semibold mt-0.5 tracking-tight">Beranda</span>
+</a>
+<!-- Inactive Tab: Progres -->
+<a class="flex flex-col items-center justify-center text-ios-secondary hover:text-ios-text transition-colors group" href="#">
+<span class="material-symbols-outlined text-[25px]">insights</span>
+<span class="text-[10px] font-medium mt-0.5 tracking-tight">Progres</span>
+</a>
+<!-- Inactive Tab: Pengaturan -->
+<a class="flex flex-col items-center justify-center text-ios-secondary hover:text-ios-text transition-colors group" href="#">
+<span class="material-symbols-outlined text-[25px]">settings</span>
+<span class="text-[10px] font-medium mt-0.5 tracking-tight">Pengaturan</span>
+</a>
+</div>
+</nav>
+<script>
+  // Toggle interactive state
+  const toggle = document.getElementById('toggle');
+  const lockIcon = document.getElementById('lock-icon');
+  const statusTitle = document.getElementById('status-title');
+  const statusDesc = document.getElementById('status-desc');
+
+  if (toggle) {
+    toggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        lockIcon.textContent = 'lock';
+        lockIcon.className = 'material-symbols-outlined text-[36px] text-ios-green';
+        lockIcon.parentElement.className = 'w-16 h-16 rounded-2xl bg-[#34C759]/10 flex items-center justify-center mb-3 transition-colors';
+        statusTitle.textContent = 'Kunci Aktif';
+        statusDesc.textContent = 'Hafalkan untuk Membuka Kunci.';
+      } else {
+        lockIcon.textContent = 'lock_open';
+        lockIcon.className = 'material-symbols-outlined text-[36px] text-ios-secondary';
+        lockIcon.parentElement.className = 'w-16 h-16 rounded-2xl bg-ios-border/60 flex items-center justify-center mb-3 transition-colors';
+        statusTitle.textContent = 'Kunci Nonaktif';
+        statusDesc.textContent = 'Semua aplikasi dapat diakses.';
+      }
+    });
+  }
+</script>
+</body></html>

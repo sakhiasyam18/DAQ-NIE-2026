@@ -1,0 +1,87 @@
+---
+title: Alur Metodologi Pengembangan Ritun dengan Scrum
+---
+
+flowchart LR
+
+    %% =========================
+    %% TEMA DAN STYLING
+    %% =========================
+
+    classDef startNode fill:#10b981,stroke:#047857,stroke-width:3px,color:#ffffff,rx:15,ry:15,font-weight:bold
+
+    classDef backlogNode fill:#f3f4f6,stroke:#6b7280,stroke-width:2px,color:#1f2937,rx:8,ry:8
+
+    classDef sprintNode fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#ffffff,rx:10,ry:10,font-weight:bold
+
+    classDef reviewNode fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#ffffff,rx:10,ry:10,font-weight:bold
+
+    classDef endNode fill:#14b8a6,stroke:#0f766e,stroke-width:3px,color:#ffffff,rx:15,ry:15,font-weight:bold
+
+
+    %% =========================
+    %% NODE
+    %% =========================
+
+    Start(("Mulai Pengembangan<br/>Metode Scrum")):::startNode
+
+    Backlog(("Product Backlog<br/>(Daftar Kebutuhan Ritun)")):::backlogNode
+
+
+    subgraph IterasiScrum ["Siklus Sprint (Setiap 2 Minggu)"]
+        direction LR
+
+        S1["Sprint 1<br/>Analisis Kebutuhan &<br/>Riset Pengguna"]:::sprintNode
+
+        Rev1{"Sprint Review<br/>& Evaluasi"}:::reviewNode
+
+        S2["Sprint 2<br/>Perancangan Prototype<br/>UI/UX"]:::sprintNode
+
+        Rev2{"Sprint Review<br/>& Evaluasi"}:::reviewNode
+
+        S3["Sprint 3<br/>Implementasi Speech Recognition<br/>& Pengecekan Bacaan"]:::sprintNode
+
+        Rev3{"Sprint Review<br/>& Evaluasi"}:::reviewNode
+
+        S4["Sprint 4<br/>Implementasi & Pengujian<br/>Recite-to-Unlock"]:::sprintNode
+
+        Rev4{"Sprint Review<br/>& Evaluasi"}:::reviewNode
+
+        S5["Sprint 5<br/>Integrasi Setoran Murajaah<br/>dengan Recite-to-Unlock"]:::sprintNode
+
+        Rev5{"Sprint Review<br/>& Evaluasi"}:::reviewNode
+
+
+        S1 -->|Hasil Sprint| Rev1
+        Rev1 -->|Lulus Evaluasi| S2
+        Rev1 -.->|Revisi / Perbaikan| S1
+
+        S2 -->|Hasil Sprint| Rev2
+        Rev2 -->|Lulus Evaluasi| S3
+        Rev2 -.->|Revisi / Perbaikan| S2
+
+        S3 -->|Hasil Sprint| Rev3
+        Rev3 -->|Lulus Evaluasi| S4
+        Rev3 -.->|Revisi / Perbaikan| S3
+
+        S4 -->|Hasil Sprint| Rev4
+        Rev4 -->|Lulus Evaluasi| S5
+        Rev4 -.->|Revisi / Perbaikan| S4
+
+        S5 -->|Hasil Sprint| Rev5
+        Rev5 -.->|Revisi / Penyempurnaan| S5
+
+    end
+
+
+    Release(("Aplikasi Ritun<br/>Versi Rilis Akhir")):::endNode
+
+
+    %% =========================
+    %% JALUR UTAMA
+    %% =========================
+
+    Start --> Backlog
+    Backlog --> S1
+
+    Rev5 ==>|Selesai & Lulus Uji| Release

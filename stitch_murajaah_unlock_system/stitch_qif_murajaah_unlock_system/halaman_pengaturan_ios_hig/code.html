@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ritun - Pengaturan</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "ios-bg": "#F2F2F7",
+          "ios-card": "#FFFFFF",
+          "ios-separator": "#E5E5EA",
+          "ios-label": "#000000",
+          "ios-secondary": "#8E8E93",
+          "ios-tertiary": "#C7C7CC",
+          "ios-green": "#34C759",
+          "ios-blue": "#007AFF",
+          "ios-orange": "#FF9500",
+          "ios-red": "#FF3B30",
+          "ios-indigo": "#5856D6",
+          "ios-gray": "#8E8E93"
+        },
+        fontFamily: {
+          sans: [
+            "-apple-system",
+            "BlinkMacSystemFont",
+            "'SF Pro Text'",
+            "'SF Pro Display'",
+            "system-ui",
+            "sans-serif"
+          ]
+        }
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+  body {
+    background-color: #F2F2F7;
+    -webkit-font-smoothing: antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  }
+  
+  /* iOS Switch Toggle */
+  .ios-toggle {
+    position: relative;
+    display: inline-block;
+    width: 51px;
+    height: 31px;
+    flex-shrink: 0;
+  }
+  .ios-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .ios-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #E9E9EB;
+    transition: .25s ease-in-out;
+    border-radius: 31px;
+  }
+  .ios-slider:before {
+    position: absolute;
+    content: "";
+    height: 27px;
+    width: 27px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15), 0 1px 1px rgba(0,0,0,0.06);
+  }
+  .ios-toggle input:checked + .ios-slider {
+    background-color: #34C759;
+  }
+  .ios-toggle input:checked + .ios-slider:before {
+    transform: translateX(20px);
+  }
+
+  .hairline-b {
+    border-bottom: 0.5px solid #E5E5EA;
+  }
+</style>
+</head>
+<body class="text-ios-label min-h-screen flex flex-col antialiased">
+<!-- iOS Navigation Bar (Large Title Layout) -->
+<header class="sticky top-0 z-30 bg-[#F2F2F7]/85 backdrop-blur-xl border-b border-black/[0.04]">
+<!-- iOS Status Bar & Mini Header / Profile Icon -->
+<div class="px-5 pt-3 pb-1 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<img alt="Ritun Logo" class="w-7 h-7 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByJGUJGyYzmzGkbRpPvgi25k-olypo--Uj7vBTH57zhFzKbnc3Glku24a9G1w6vyGWbw8CiK0qQIHmeLDpvSOwKdq6kc746q0onMDYzgDKQ0UO8zttjWcFBGqeKBOws6NZ5t39Mg65nTQ1NYnuBSd42uI9Gn_UW8hGm-oajyHoSxwnehY55QU2J-TdsPeZZrDy_WQRUypMqi8K51V1brZymW0tqW1gCAynTImyzhv3QR4oX1ntWJQ1eVxsLwzN1mKf"/>
+<span class="text-[17px] font-semibold tracking-tight text-neutral-800">Ritun</span>
+</div>
+<div class="flex items-center space-x-3">
+<button aria-label="Notifikasi" class="text-neutral-600 hover:text-black flex items-center justify-center p-1 rounded-full">
+<span class="material-symbols-outlined text-[23px]">notifications</span>
+</button>
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-black/10 object-cover" data-alt="Stylized modern profile portrait of a user" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3Siw6ce8P-hsEdVDi1J5Ok1L4s2MAb6jl25zzlzgZwfChe6p_t4_-SfAFgFR57mCBnet5H_PIRcINDzD8upA2Dr_jst9KUVmjXVhb4aDG8nPXVKru0_kAW6ftRuHHhfoWJajz3SbXy1zB3312KAA0VN_F_98jEJMTXUseWIaUUcNk5Im7shXTUT8t9RzRN6csItyzuQhFsoS0fUDwtD-2f7HSGBj9aTfdUjdeNi0fCpcNamVS-oI"/>
+</div>
+</div>
+<!-- iOS Large Title -->
+<div class="px-5 pt-2 pb-3">
+<h1 class="text-[34px] font-bold tracking-tight text-neutral-900 leading-tight">Pengaturan</h1>
+</div>
+</header>
+<!-- Main Inset Grouped Content -->
+<main class="flex-grow px-4 pb-28 pt-2 max-w-lg mx-auto w-full space-y-6">
+<!-- Section 1: Penguncian Aplikasi -->
+<div>
+<h2 class="text-[13px] uppercase tracking-wider text-ios-secondary font-medium px-4 mb-2">Penguncian Aplikasi</h2>
+<div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+<!-- Item 1 -->
+<a class="flex items-center pl-4 pr-3 py-3 active:bg-neutral-100 transition-colors" href="#">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#34C759] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">app_blocking</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 hairline-b pr-1">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Kelola aplikasi terkunci</span>
+<span class="material-symbols-outlined text-ios-tertiary text-[20px]">chevron_right</span>
+</div>
+</a>
+<!-- Item 2 -->
+<div class="flex items-center pl-4 pr-4 py-2.5">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#34C759] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">lock</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Status Kunci</span>
+<label class="ios-toggle">
+<input checked="" type="checkbox"/>
+<span class="ios-slider"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Interval Waktu -->
+<div>
+<h2 class="text-[13px] uppercase tracking-wider text-ios-secondary font-medium px-4 mb-2">Interval Waktu</h2>
+<div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+<!-- Item 1 -->
+<a class="flex items-center pl-4 pr-3 py-3 active:bg-neutral-100 transition-colors" href="#">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#FF9500] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">timer</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 hairline-b pr-1">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Durasi interval</span>
+<div class="flex items-center text-ios-secondary">
+<span class="text-[17px] mr-1">30 menit</span>
+<span class="material-symbols-outlined text-ios-tertiary text-[20px]">chevron_right</span>
+</div>
+</div>
+</a>
+<!-- Item 2 -->
+<div class="flex items-center pl-4 pr-4 py-2.5">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#FF9500] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">update</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Penguncian berkala</span>
+<label class="ios-toggle">
+<input checked="" type="checkbox"/>
+<span class="ios-slider"></span>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 3: Notifikasi -->
+<div>
+<h2 class="text-[13px] uppercase tracking-wider text-ios-secondary font-medium px-4 mb-2">Notifikasi</h2>
+<div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+<!-- Item 1 -->
+<div class="flex items-center pl-4 pr-4 py-2.5">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#FF3B30] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">notifications_active</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 hairline-b pb-2.5">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Pengingat harian</span>
+<label class="ios-toggle">
+<input type="checkbox"/>
+<span class="ios-slider"></span>
+</label>
+</div>
+</div>
+<!-- Item 2 -->
+<a class="flex items-center pl-4 pr-3 py-3 active:bg-neutral-100 transition-colors" href="#">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#5856D6] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">schedule</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 pr-1">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Waktu pengingat</span>
+<div class="flex items-center text-ios-secondary">
+<span class="text-[17px] mr-1">08:00 AM</span>
+<span class="material-symbols-outlined text-ios-tertiary text-[20px]">chevron_right</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+<!-- Section 4: Akun -->
+<div>
+<h2 class="text-[13px] uppercase tracking-wider text-ios-secondary font-medium px-4 mb-2">Akun</h2>
+<div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+<!-- Item 1 -->
+<a class="flex items-center pl-4 pr-3 py-3 active:bg-neutral-100 transition-colors" href="#">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#007AFF] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">person</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 hairline-b pr-1">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Nama Pengguna</span>
+<div class="flex items-center text-ios-secondary">
+<span class="text-[17px] mr-1">Ahmad</span>
+<span class="material-symbols-outlined text-ios-tertiary text-[20px]">chevron_right</span>
+</div>
+</div>
+</a>
+<!-- Item 2 (Destructive Action) -->
+<button class="w-full flex items-center pl-4 pr-3 py-3 active:bg-red-50 text-left transition-colors">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-red-100 flex items-center justify-center text-[#FF3B30] mr-3.5 flex-shrink-0">
+<span class="material-symbols-outlined text-[19px]">restart_alt</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 pr-1">
+<span class="text-[17px] text-[#FF3B30] font-normal tracking-[-0.3px]">Reset Progres</span>
+<span class="material-symbols-outlined text-red-200 text-[20px]">chevron_right</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Section 5: Tentang -->
+<div>
+<h2 class="text-[13px] uppercase tracking-wider text-ios-secondary font-medium px-4 mb-2">Tentang</h2>
+<div class="bg-white rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+<!-- Item 1 -->
+<div class="flex items-center pl-4 pr-4 py-3">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#8E8E93] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">info</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 hairline-b">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Versi</span>
+<span class="text-[17px] text-ios-secondary">1.0.0</span>
+</div>
+</div>
+<!-- Item 2 -->
+<a class="flex items-center pl-4 pr-3 py-3 active:bg-neutral-100 transition-colors" href="#">
+<div class="w-[30px] h-[30px] rounded-[7px] bg-[#5856D6] flex items-center justify-center text-white mr-3.5 flex-shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[19px]">help</span>
+</div>
+<div class="flex-1 flex items-center justify-between py-0.5 pr-1">
+<span class="text-[17px] text-neutral-900 tracking-[-0.3px]">Tentang Ritun</span>
+<span class="material-symbols-outlined text-ios-tertiary text-[20px]">chevron_right</span>
+</div>
+</a>
+</div>
+</div>
+<div class="text-center pt-2 pb-4">
+<p class="text-[12px] text-ios-secondary">Ritun App • Solusi Produktif &amp; Ibadah</p>
+</div>
+</main>
+<!-- iOS Frosted Glass Tab Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-20 border-t border-black/[0.08] pb-6 pt-1.5 px-6" style="backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);">
+<div class="max-w-md mx-auto flex justify-around items-center">
+<a class="flex flex-col items-center justify-center text-ios-secondary hover:text-[#007AFF] transition-colors py-1 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-0.5">home</span>
+<span class="text-[10px] font-medium tracking-tight">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center text-ios-secondary hover:text-[#007AFF] transition-colors py-1 group" href="#">
+<span class="material-symbols-outlined text-[24px] mb-0.5">insights</span>
+<span class="text-[10px] font-medium tracking-tight">Progres</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#007AFF] py-1" href="#">
+<span class="material-symbols-outlined text-[24px] mb-0.5" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-[10px] font-medium tracking-tight">Pengaturan</span>
+</a>
+</div>
+</nav>
+</body></html>

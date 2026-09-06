@@ -1,0 +1,61 @@
+---
+title: Alur Pemrosesan Suara - RITUN
+---
+
+flowchart LR
+
+    %% =========================
+    %% STYLING
+    %% =========================
+
+    classDef startNode fill:#10b981,stroke:#047857,stroke-width:3px,color:#ffffff,rx:15,ry:15,font-weight:bold
+    classDef inputNode fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#ffffff,rx:8,ry:8
+    classDef aiNode fill:#8b5cf6,stroke:#6d28d9,stroke-width:2px,color:#ffffff,rx:8,ry:8
+    classDef processNode fill:#0ea5e9,stroke:#0369a1,stroke-width:2px,color:#ffffff,rx:8,ry:8
+    classDef decisionNode fill:#f59e0b,stroke:#b45309,stroke-width:2px,color:#ffffff,rx:10,ry:10,font-weight:bold
+    classDef successNode fill:#14b8a6,stroke:#0f766e,stroke-width:3px,color:#ffffff,rx:15,ry:15,font-weight:bold
+    classDef retryNode fill:#ef4444,stroke:#b91c1c,stroke-width:2px,color:#ffffff,rx:8,ry:8
+
+    %% =========================
+    %% NODE
+    %% =========================
+
+    Start(("Mulai<br/>Setoran Suara")):::startNode
+
+    Rekam["🎙️ Pengguna Merekam<br/>Bacaan Murajaah"]:::inputNode
+
+    Whisper["🤖 Speech-to-Text<br/>Whisper"]:::aiNode
+
+    Normalisasi["Normalisasi Teks<br/>Arab"]:::processNode
+
+    Checker["🧠 Quran Recitation Checker<br/>WER / CER + Similarity"]:::aiNode
+
+    Cek{"Apakah Hasil<br/>Pengecekan Sesuai?"}:::decisionNode
+
+    Benar["Setoran Berhasil<br/>dan Dicatat"]:::successNode
+
+    Unlock(("🔓 Akses Aplikasi<br/>Dibuka")):::successNode
+
+    Salah["Tampilkan Ayat Target<br/>dan Instruksi Pengulangan"]:::retryNode
+
+    %% =========================
+    %% ALUR
+    %% =========================
+
+    Start --> Rekam
+    Rekam --> Whisper
+    Whisper --> Normalisasi
+    Normalisasi --> Checker
+    Checker --> Cek
+
+    Cek -->|Sesuai| Benar
+    Benar --> Unlock
+
+    Cek -->|Tidak Sesuai| Salah
+    Salah -->|Setoran Ulang| Rekam
+
+    %% =========================
+    %% LINK STYLE
+    %% =========================
+
+    linkStyle default stroke:#94a3b8,stroke-width:1.5px

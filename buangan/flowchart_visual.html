@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritun — Flowchart Penggunaan (Non-Teknis)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #F0FDF4;
+            --card: #FFFFFF;
+            --border: #D1D5DB;
+            --green-50: #F0FDF4;
+            --green-100: #DCFCE7;
+            --green-200: #BBF7D0;
+            --green-500: #22C55E;
+            --green-600: #16A34A;
+            --green-700: #15803D;
+            --green-800: #166534;
+            --emerald-500: #10B981;
+            --emerald-600: #059669;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(135deg, #ECFDF5 0%, #F0FDF4 40%, #EFF6FF 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        .header {
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--green-500), var(--emerald-600));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
+        }
+
+        .brand-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.4px;
+        }
+
+        .brand-text p {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--gray-500);
+            margin-top: 1px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-green {
+            background: var(--green-100);
+            color: var(--green-700);
+            border: 1px solid var(--green-200);
+        }
+
+        /* ── Main Container ── */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* ── Diagram Card ── */
+        .diagram-card {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .diagram-header {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FAFAFA;
+        }
+
+        .diagram-header h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .diagram-header .subtitle {
+            font-size: 13px;
+            color: var(--gray-500);
+            font-weight: 400;
+        }
+
+        .diagram-body {
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            background: radial-gradient(circle at 50% 50%, rgba(16,185,129,0.03) 0%, transparent 80%), #FFFFFF;
+        }
+
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mermaid svg {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.03));
+        }
+
+        /* ── Legend Info Grid ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .info-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .info-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            background: var(--gray-50);
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid var(--gray-100);
+        }
+
+        .info-content h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+            margin-top: 4px;
+        }
+
+        .info-content p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 32px;
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <div class="brand">
+            <div class="logo-mark">R</div>
+            <div class="brand-text">
+                <h1>Ritun — User Flow</h1>
+                <p>Alur Penggunaan Non-Teknis</p>
+            </div>
+        </div>
+        <div class="badge badge-green">
+            <span>●</span>
+            <span>Mermaid Flowchart</span>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="diagram-card">
+        <div class="diagram-header">
+            <div>
+                <h2>Alur Pemakaian Aplikasi (User Journey)</h2>
+                <span class="subtitle">Recite-to-Unlock Murajaah System</span>
+            </div>
+        </div>
+        <div class="diagram-body">
+            <div class="mermaid">
+---
+title: ""
+---
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#D1FAE5',
+    'primaryBorderColor': '#059669',
+    'primaryTextColor': '#064E3B',
+    'lineColor': '#6B7280',
+    'textColor': '#1F2937',
+    'fontFamily': 'Inter, system-ui, sans-serif'
+  }
+}}%%
+
+graph TD
+    classDef startNode fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff,font-weight:bold,rx:12px,ry:12px;
+    classDef menuNode fill:#D1FAE5,stroke:#059669,stroke-width:2px,color:#064E3B,font-weight:bold,rx:8px,ry:8px;
+    classDef actionNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#1F2937,rx:8px,ry:8px;
+    classDef conditionNode fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E,font-weight:bold;
+    classDef successNode fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#166534,font-weight:bold,rx:8px,ry:8px;
+    classDef errorNode fill:#FEE2E2,stroke:#EF4444,stroke-width:2px,color:#991B1B,font-weight:bold,rx:8px,ry:8px;
+    classDef progressNode fill:#EFF6FF,stroke:#3B82F6,stroke-width:2px,color:#1E3A8A,font-weight:bold,rx:8px,ry:8px;
+
+    Start([📱 Buka Aplikasi RITUN]):::startNode
+
+    MenuPengaturan(⚙️ Menu Pengaturan):::menuNode
+    PilihAplikasi[Pilih Aplikasi yang Dikunci<br/><i>(Contoh: Instagram, TikTok)</i>]:::actionNode
+
+    MenuSetoran(📖 Setoran Hafalan):::menuNode
+    PilihAyat[Pilih Target Ayat]:::actionNode
+    RekamBacaan[🎙️ Rekam Bacaan]:::actionNode
+    CekBacaan{Sistem Mengecek<br/>Kebenaran Bacaan}:::conditionNode
+    
+    StatusBenar([✅ Bacaan Benar]):::successNode
+    StatusSalah([❌ Ada Kesalahan]):::errorNode
+    
+    UlangiRekaman[Ulangi Rekaman]:::actionNode
+    BukaAplikasi(🔓 Akses Aplikasi Dibuka!):::successNode
+    
+    LihatProgres(📊 Lihat Progres & Streak Hafalan):::progressNode
+
+    Start --> MenuPengaturan
+    Start --> MenuSetoran
+    
+    MenuPengaturan --> PilihAplikasi
+    PilihAplikasi -.-> LihatProgres
+    
+    MenuSetoran --> PilihAyat
+    PilihAyat --> RekamBacaan
+    RekamBacaan --> CekBacaan
+    
+    CekBacaan -->|Sesuai & Lancar| StatusBenar
+    CekBacaan -->|Perlu Diperbaiki| StatusSalah
+    
+    StatusSalah --> UlangiRekaman
+    UlangiRekaman --> RekamBacaan
+    
+    StatusBenar --> BukaAplikasi
+    BukaAplikasi --> LihatProgres
+            </div>
+        </div>
+    </div>
+
+    <!-- Keterangan Alur -->
+    <div class="info-grid">
+        <div class="info-card">
+            <div class="info-icon">⚙️</div>
+            <div class="info-content">
+                <h3>Tahap Pengaturan</h3>
+                <p>Pengguna memilih aplikasi mana saja yang berpotensi menjadi distraksi dan perlu dikunci dengan sistem hafalan.</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">🎙️</div>
+            <div class="info-content">
+                <h3>Tahap Setoran</h3>
+                <p>Saat akan membuka aplikasi terkunci, pengguna diwajibkan menyetorkan target hafalan via rekaman suara.</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">🤖</div>
+            <div class="info-content">
+                <h3>Evaluasi AI</h3>
+                <p>Kecerdasan buatan akan memvalidasi ketepatan bacaan. Jika salah, pengguna harus mengulangi setoran tersebut.</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <div class="info-icon">📈</div>
+            <div class="info-content">
+                <h3>Sistem Reward</h3>
+                <p>Setelah sukses, aplikasi terbuka dan pengguna mendapatkan penambahan streak (gamifikasi) di halaman progres.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p>Ritun: Self-Discipline App Berbasis Murajaah Al-Qur'an dengan Mekanisme Recite-to-Unlock</p>
+</footer>
+
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+        startOnLoad: true,
+        securityLevel: 'loose'
+    });
+</script>
+</body>
+</html>

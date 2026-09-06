@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Ritun - Akses Dibuka</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration conforming to Apple HIG Theme -->
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "ios-bg": "#F2F2F7",
+          "ios-card": "#FFFFFF",
+          "ios-green": "#34C759",
+          "ios-green-soft": "#EBF9EE",
+          "ios-green-dark": "#248A3D",
+          "ios-label": "#000000",
+          "ios-secondary-label": "#8E8E93",
+          "ios-tertiary-label": "#C7C7CC",
+          "ios-separator": "#E5E5EA",
+          "ios-fill": "#E5E5EA",
+          "ios-fill-secondary": "#F2F2F7",
+        },
+        fontFamily: {
+          sans: ["-apple-system", "BlinkMacSystemFont", "'SF Pro Text'", "'SF Pro Display'", "system-ui", "sans-serif"],
+        },
+        boxShadow: {
+          "ios-card": "0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
+          "ios-button": "0 1px 2px rgba(0, 0, 0, 0.05)",
+        }
+      }
+    }
+  }
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    min-height: max(844px, 100dvh);
+    -webkit-font-smoothing: -apple-system-font;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  }
+</style>
+</head>
+<body class="bg-ios-bg text-ios-label min-h-screen flex flex-col justify-between items-center px-6 py-10 antialiased select-none">
+<!-- Top Brand Navigation / Header -->
+<header class="w-full max-w-sm flex items-center justify-between pt-2">
+<div class="flex items-center space-x-2">
+<!-- Clean brand 'R' mark without white box -->
+<div class="w-8 h-8 rounded-full bg-ios-green flex items-center justify-center text-white font-bold text-lg tracking-tight shadow-sm">
+        R
+      </div>
+<span class="font-semibold text-ios-label tracking-tight text-[17px]">Ritun</span>
+</div>
+<div class="inline-flex items-center px-2.5 py-1 rounded-full bg-ios-green-soft text-ios-green-dark text-xs font-semibold tracking-wide">
+      Akses Aktif
+    </div>
+</header>
+<!-- Main Center Content -->
+<main class="w-full max-w-sm flex flex-col items-center text-center my-auto py-8">
+<!-- Clean iOS Padlock / Success Badge -->
+<div class="relative mb-6">
+<div class="w-24 h-24 rounded-full bg-ios-green-soft flex items-center justify-center text-ios-green">
+<span class="material-symbols-outlined text-[48px] fill-1" style="font-variation-settings: 'FILL' 1, 'wght' 600;">
+          lock_open_right
+        </span>
+</div>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center text-ios-green border border-ios-separator/60">
+<span class="material-symbols-outlined text-[20px] font-bold" style="font-variation-settings: 'FILL' 1, 'wght' 700;">
+          check
+        </span>
+</div>
+</div>
+<!-- iOS Typography: Subhead & Title -->
+<div class="space-y-1.5 mb-6">
+<p class="text-[17px] font-semibold text-ios-green-dark tracking-tight">
+        Masya Allah! ✨
+      </p>
+<h1 class="text-[32px] font-bold tracking-tight text-ios-label leading-tight">
+        Akses dibuka!
+      </h1>
+</div>
+<!-- Streak Pill: Subtle Apple-style elevated card -->
+<div class="inline-flex items-center space-x-2 bg-white px-4 py-2 rounded-full border border-ios-separator shadow-ios-card mb-8">
+<span class="text-base leading-none">🔥</span>
+<span class="text-[14px] font-semibold text-ios-label">5 Hari Berturut-turut</span>
+</div>
+<!-- Minimal Circular Countdown Indicator -->
+<div class="flex flex-col items-center justify-center space-y-3">
+<div class="relative w-14 h-14 flex items-center justify-center">
+<svg class="absolute inset-0 w-full h-full -rotate-90" viewbox="0 0 36 36">
+<!-- Background ring -->
+<circle cx="18" cy="18" fill="none" r="15" stroke="#E5E5EA" stroke-width="2.5"></circle>
+<!-- Active ring -->
+<circle class="transition-all duration-1000 ease-linear" cx="18" cy="18" fill="none" id="countdown-circle" r="15" stroke="#34C759" stroke-dasharray="94.2" stroke-dashoffset="31.4" stroke-linecap="round" stroke-width="2.5"></circle>
+</svg>
+<span class="text-[18px] font-bold text-ios-label tracking-tight" id="countdown-timer">3</span>
+</div>
+<p class="text-[14px] text-ios-secondary-label font-normal">
+        Membuka TikTok dalam <span class="font-medium text-ios-label" id="countdown-text-inline">3</span>...
+      </p>
+</div>
+</main>
+<!-- Bottom Action Button: Apple HIG Clean Secondary/Primary Button -->
+<footer class="w-full max-w-sm pb-4 pt-2">
+<button class="w-full bg-white hover:bg-slate-50 active:bg-slate-100 text-ios-label border border-ios-separator rounded-2xl py-3.5 px-5 flex items-center justify-center space-x-2 shadow-ios-button transition-colors font-semibold text-[16px]">
+<span class="material-symbols-outlined text-ios-secondary-label text-[20px]" style="font-variation-settings: 'wght' 500;">
+        arrow_back
+      </span>
+<span>Kembali ke Ritun</span>
+</button>
+</footer>
+<!-- Interactive Countdown Loop -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let count = 3;
+      const totalTime = 3;
+      const circumference = 94.2; // 2 * PI * 15
+      const timerEl = document.getElementById('countdown-timer');
+      const inlineTextEl = document.getElementById('countdown-text-inline');
+      const circleEl = document.getElementById('countdown-circle');
+
+      setInterval(() => {
+        count--;
+        if (count < 1) {
+          count = 3;
+        }
+        timerEl.textContent = count;
+        inlineTextEl.textContent = count;
+        if (circleEl) {
+          const offset = circumference * (1 - count / totalTime);
+          circleEl.style.strokeDashoffset = offset;
+        }
+      }, 1000);
+    });
+  </script>
+</body></html>

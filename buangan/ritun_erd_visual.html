@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ritun — Entity Relationship Diagram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --bg: #F0FDF4;
+            --card: #FFFFFF;
+            --border: #D1D5DB;
+            --green-50: #F0FDF4;
+            --green-100: #DCFCE7;
+            --green-200: #BBF7D0;
+            --green-500: #22C55E;
+            --green-600: #16A34A;
+            --green-700: #15803D;
+            --green-800: #166534;
+            --green-900: #14532D;
+            --emerald-500: #10B981;
+            --emerald-600: #059669;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-800: #1F2937;
+            --gray-900: #111827;
+            --blue-50: #EFF6FF;
+            --blue-500: #3B82F6;
+            --blue-600: #2563EB;
+            --amber-50: #FFFBEB;
+            --amber-500: #F59E0B;
+            --purple-50: #FAF5FF;
+            --purple-500: #A855F7;
+            --rose-50: #FFF1F2;
+            --rose-500: #F43F5E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            background: linear-gradient(135deg, #ECFDF5 0%, #F0FDF4 30%, #F5F3FF 70%, #EFF6FF 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        .header {
+            background: rgba(255,255,255,0.72);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 16px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--green-500), var(--emerald-600));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
+        }
+
+        .brand-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--gray-900);
+            letter-spacing: -0.4px;
+        }
+
+        .brand-text p {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--gray-500);
+            margin-top: 1px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-green {
+            background: var(--green-100);
+            color: var(--green-700);
+            border: 1px solid var(--green-200);
+        }
+
+        /* ── Main Container ── */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+
+        /* ── Legend ── */
+        .legend-bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+            padding: 16px 24px;
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+        }
+
+        .legend-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gray-400);
+            margin-right: 4px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        .legend-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 5px;
+            flex-shrink: 0;
+        }
+
+        .dot-green { background: linear-gradient(135deg, #34D399, #059669); }
+        .dot-blue { background: linear-gradient(135deg, #60A5FA, #2563EB); }
+        .dot-amber { background: linear-gradient(135deg, #FBBF24, #D97706); }
+        .dot-purple { background: linear-gradient(135deg, #C084FC, #9333EA); }
+        .dot-rose { background: linear-gradient(135deg, #FB7185, #E11D48); }
+
+        .legend-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .line-solid {
+            width: 28px;
+            height: 2px;
+            background: var(--gray-500);
+            border-radius: 1px;
+        }
+
+        .line-label {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        /* ── Diagram Card ── */
+        .diagram-card {
+            background: var(--card);
+            border-radius: 20px;
+            border: 1px solid var(--gray-200);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+
+        .diagram-header {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .diagram-header h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .diagram-header .subtitle {
+            font-size: 13px;
+            color: var(--gray-400);
+            font-weight: 400;
+        }
+
+        .diagram-body {
+            padding: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(16,185,129,0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(59,130,246,0.03) 0%, transparent 50%),
+                linear-gradient(180deg, var(--gray-50) 0%, #FFFFFF 100%);
+        }
+
+        .mermaid {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ── Mermaid Overrides ── */
+        .mermaid svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Entity styling */
+        .mermaid .er.entityBox {
+            fill: #FFFFFF !important;
+            stroke: var(--emerald-600) !important;
+            stroke-width: 2px !important;
+            rx: 12 !important;
+            ry: 12 !important;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06)) !important;
+        }
+
+        .mermaid .er.entityLabel {
+            fill: var(--green-800) !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        .mermaid .er.attributeBoxEven {
+            fill: var(--green-50) !important;
+        }
+
+        .mermaid .er.attributeBoxOdd {
+            fill: #FFFFFF !important;
+        }
+
+        .mermaid .er.relationshipLine {
+            stroke: var(--gray-400) !important;
+            stroke-width: 1.5px !important;
+        }
+
+        .mermaid .er.relationshipLabel {
+            fill: var(--gray-600) !important;
+            font-size: 11px !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        /* ── Info Cards Grid ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .info-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--gray-200);
+            padding: 20px 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .info-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .info-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .icon-green { background: var(--green-100); color: var(--green-600); }
+        .icon-blue { background: var(--blue-50); color: var(--blue-600); }
+        .icon-amber { background: var(--amber-50); color: var(--amber-500); }
+        .icon-purple { background: var(--purple-50); color: var(--purple-500); }
+        .icon-rose { background: var(--rose-50); color: var(--rose-500); }
+
+        .info-card h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gray-800);
+            letter-spacing: -0.2px;
+        }
+
+        .info-card p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .field-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .field-list li {
+            font-size: 12px;
+            color: var(--gray-600);
+            padding: 4px 0;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .field-list li:last-child {
+            border-bottom: none;
+        }
+
+        .field-tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 5px;
+            border-radius: 4px;
+            letter-spacing: 0.04em;
+            flex-shrink: 0;
+        }
+
+        .tag-pk { background: var(--green-100); color: var(--green-700); }
+        .tag-fk { background: var(--blue-50); color: var(--blue-600); }
+        .tag-uk { background: var(--amber-50); color: var(--amber-500); }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 32px;
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+
+        .footer a {
+            color: var(--emerald-600);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .container { padding: 16px; }
+            .header-inner { padding: 12px 16px; }
+            .diagram-body { padding: 16px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .legend-bar { gap: 12px; padding: 12px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+    <div class="header-inner">
+        <div class="brand">
+            <div class="logo-mark">R</div>
+            <div class="brand-text">
+                <h1>Ritun — ERD</h1>
+                <p>Entity Relationship Diagram • Self-Discipline App</p>
+            </div>
+        </div>
+        <div class="badge badge-green">
+            <span>●</span>
+            <span>7 Entitas • Mermaid Diagram</span>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Legend -->
+    <div class="legend-bar">
+        <span class="legend-title">Legenda</span>
+        <div class="legend-item">
+            <div class="legend-dot dot-green"></div>
+            <span>Inti Aplikasi</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot dot-blue"></div>
+            <span>Penguncian</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot dot-amber"></div>
+            <span>Data Al-Qur'an</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot dot-purple"></div>
+            <span>Setoran & Evaluasi</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot dot-rose"></div>
+            <span>Progres</span>
+        </div>
+        <div style="margin-left: auto;" class="legend-line">
+            <div class="line-solid"></div>
+            <span class="line-label">||--o{ = one to many</span>
+        </div>
+        <div class="legend-line">
+            <div class="line-solid" style="border-top: 2px dashed var(--gray-500); background: none; height: 0;"></div>
+            <span class="line-label">||--|| = one to one</span>
+        </div>
+    </div>
+
+    <!-- Diagram -->
+    <div class="diagram-card">
+        <div class="diagram-header">
+            <div>
+                <h2>Entity Relationship Diagram</h2>
+                <span class="subtitle">Ritun: Recite-to-Unlock Murajaah System</span>
+            </div>
+            <div class="badge badge-green">MTQ XVIII 2026 — UM</div>
+        </div>
+        <div class="diagram-body">
+            <div class="mermaid">
+---
+title: ""
+---
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#D1FAE5',
+    'primaryBorderColor': '#059669',
+    'primaryTextColor': '#064E3B',
+    'lineColor': '#9CA3AF',
+    'textColor': '#374151',
+    'fontSize': '13px',
+    'fontFamily': 'Inter, system-ui, sans-serif',
+    'background': '#FFFFFF',
+    'mainBkg': '#D1FAE5',
+    'nodeBorder': '#059669',
+    'clusterBkg': '#F0FDF4',
+    'edgeLabelBackground': '#FFFFFF'
+  },
+  'er': {
+    'diagramPadding': 40,
+    'layoutDirection': 'TB',
+    'minEntityWidth': 180,
+    'minEntityHeight': 60,
+    'entityPadding': 16,
+    'stroke': '#059669',
+    'fill': '#D1FAE5',
+    'fontSize': 13,
+    'useMaxWidth': true
+  }
+}}%%
+
+erDiagram
+
+    APLIKASI ||--o{ USER_LOCKED_APPS : "mengkonfigurasi"
+    APLIKASI ||--o{ RECITATION_SUBMISSIONS : "menyimpan"
+    APLIKASI ||--|| USER_PROGRESS : "memiliki"
+    LOCKED_APPS ||--o{ USER_LOCKED_APPS : "dipilih_oleh"
+    QURAN_SURAH ||--o{ QURAN_AYAT : "berisi"
+    QURAN_AYAT ||--o{ RECITATION_SUBMISSIONS : "menjadi_target"
+    RECITATION_SUBMISSIONS ||--|| RECITATION_EVALUATIONS : "dievaluasi"
+
+    APLIKASI {
+        int id PK "ID unik aplikasi"
+        string app_name "Nama aplikasi Ritun"
+        string app_version "Versi (1.0.0)"
+        datetime installed_at "Waktu instalasi"
+    }
+
+    LOCKED_APPS {
+        int id PK "ID unik"
+        string app_name "Nama app target"
+        string package_name UK "Package Android"
+        string category "social_media atau game"
+        boolean is_active "Status aktif"
+    }
+
+    USER_LOCKED_APPS {
+        int id PK "ID unik"
+        int aplikasi_id FK "Ref APLIKASI"
+        int locked_app_id FK "Ref LOCKED_APPS"
+        boolean is_locked "Kunci aktif"
+        datetime created_at "Waktu dibuat"
+        datetime updated_at "Waktu diperbarui"
+    }
+
+    QURAN_SURAH {
+        int id PK "ID unik surat"
+        int surah_number UK "Nomor surat 78-114"
+        string name "Nama surat"
+        int juz_number "Juz 30"
+    }
+
+    QURAN_AYAT {
+        int id PK "ID unik ayat"
+        int surah_id FK "Ref QURAN_SURAH"
+        int ayat_number "Nomor ayat"
+        text text_arabic "Teks Arab"
+    }
+
+    RECITATION_SUBMISSIONS {
+        int id PK "ID unik setoran"
+        int aplikasi_id FK "Ref APLIKASI"
+        int ayat_id FK "Ref QURAN_AYAT"
+        string audio_path "Path file audio"
+        text transcript "Transkripsi Whisper"
+        string status "pending atau correct atau incorrect"
+        datetime submitted_at "Waktu setoran"
+    }
+
+    RECITATION_EVALUATIONS {
+        int id PK "ID unik evaluasi"
+        int submission_id FK "Ref SUBMISSIONS"
+        float wer_score "Word Error Rate"
+        float cer_score "Char Error Rate"
+        string result "passed atau failed"
+        datetime evaluated_at "Waktu evaluasi"
+    }
+
+    USER_PROGRESS {
+        int id PK "ID unik progres"
+        int aplikasi_id FK "Ref APLIKASI"
+        int total_successful_submissions "Total berhasil"
+        int total_xp "Total XP"
+        int current_streak "Streak saat ini"
+        int longest_streak "Streak terpanjang"
+        datetime last_submission_at "Setoran terakhir"
+        datetime updated_at "Diperbarui"
+    }
+            </div>
+        </div>
+    </div>
+
+    <!-- Entity Info Cards -->
+    <div class="info-grid">
+
+        <!-- APLIKASI -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-green">📱</div>
+                <h3>APLIKASI</h3>
+            </div>
+            <p>Pusat sistem — menyimpan data instalasi Ritun di perangkat pengguna.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li>app_name — Nama aplikasi</li>
+                <li>app_version — Versi (1.0.0)</li>
+                <li>installed_at — Waktu instalasi</li>
+            </ul>
+        </div>
+
+        <!-- LOCKED_APPS -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-blue">🔒</div>
+                <h3>LOCKED_APPS</h3>
+            </div>
+            <p>Daftar aplikasi target yang bisa dikunci: Instagram, TikTok, Game.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li>app_name — Nama aplikasi target</li>
+                <li><span class="field-tag tag-uk">UK</span> package_name — Package Android</li>
+                <li>category — social_media / game</li>
+                <li>is_active — Status aktif</li>
+            </ul>
+        </div>
+
+        <!-- USER_LOCKED_APPS -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-blue">⚙️</div>
+                <h3>USER_LOCKED_APPS</h3>
+            </div>
+            <p>Konfigurasi kunci per aplikasi — menghubungkan APLIKASI dengan LOCKED_APPS.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li><span class="field-tag tag-fk">FK</span> aplikasi_id → APLIKASI</li>
+                <li><span class="field-tag tag-fk">FK</span> locked_app_id → LOCKED_APPS</li>
+                <li>is_locked — Status kunci aktif/nonaktif</li>
+            </ul>
+        </div>
+
+        <!-- QURAN_SURAH -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-amber">📖</div>
+                <h3>QURAN_SURAH</h3>
+            </div>
+            <p>Data surat Al-Qur'an Juz 30 (Juz 'Amma) — 37 surat dari An-Naba hingga An-Nas.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li><span class="field-tag tag-uk">UK</span> surah_number — Nomor 78–114</li>
+                <li>name — Nama surat latin</li>
+                <li>juz_number — Nomor juz (30)</li>
+            </ul>
+        </div>
+
+        <!-- QURAN_AYAT -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-amber">🕌</div>
+                <h3>QURAN_AYAT</h3>
+            </div>
+            <p>Data ayat Al-Qur'an per surat — teks Arab untuk ditampilkan & dievaluasi.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li><span class="field-tag tag-fk">FK</span> surah_id → QURAN_SURAH</li>
+                <li>ayat_number — Nomor ayat</li>
+                <li>text_arabic — Teks aksara Arab</li>
+            </ul>
+        </div>
+
+        <!-- RECITATION_SUBMISSIONS -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-purple">🎙️</div>
+                <h3>RECITATION_SUBMISSIONS</h3>
+            </div>
+            <p>Setoran murajaah — rekaman suara pengguna yang ditranskripsi oleh Whisper AI.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li><span class="field-tag tag-fk">FK</span> aplikasi_id → APLIKASI</li>
+                <li><span class="field-tag tag-fk">FK</span> ayat_id → QURAN_AYAT</li>
+                <li>audio_path — Path file audio</li>
+                <li>transcript — Hasil Whisper</li>
+                <li>status — pending / correct / incorrect</li>
+            </ul>
+        </div>
+
+        <!-- RECITATION_EVALUATIONS -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-purple">✅</div>
+                <h3>RECITATION_EVALUATIONS</h3>
+            </div>
+            <p>Hasil evaluasi dari Quran Recitation Checker — WER/CER scoring.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li><span class="field-tag tag-fk">FK</span> submission_id → SUBMISSIONS</li>
+                <li>wer_score — Word Error Rate</li>
+                <li>cer_score — Character Error Rate</li>
+                <li>result — passed / failed</li>
+            </ul>
+        </div>
+
+        <!-- USER_PROGRESS -->
+        <div class="info-card">
+            <div class="info-card-header">
+                <div class="info-icon icon-rose">📊</div>
+                <h3>USER_PROGRESS</h3>
+            </div>
+            <p>Statistik & gamifikasi — streak, XP, total setoran berhasil.</p>
+            <ul class="field-list">
+                <li><span class="field-tag tag-pk">PK</span> id — ID unik</li>
+                <li><span class="field-tag tag-fk">FK</span> aplikasi_id → APLIKASI</li>
+                <li>total_successful_submissions</li>
+                <li>total_xp — Poin gamifikasi</li>
+                <li>current_streak — Streak hari</li>
+                <li>longest_streak — Streak terpanjang</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<footer class="footer">
+    <p>Ritun: Self-Discipline App Berbasis Murajaah Al-Qur'an dengan Mekanisme Recite-to-Unlock</p>
+    <p style="margin-top: 4px;">MTQ XVIII Tahun 2026 — Universitas Negeri Malang</p>
+</footer>
+
+<!-- Mermaid JS -->
+<script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'base',
+        themeVariables: {
+            primaryColor: '#D1FAE5',
+            primaryBorderColor: '#059669',
+            primaryTextColor: '#064E3B',
+            lineColor: '#9CA3AF',
+            textColor: '#374151',
+            fontSize: '13px',
+            fontFamily: 'Inter, system-ui, sans-serif',
+            background: '#FFFFFF',
+            mainBkg: '#D1FAE5',
+            nodeBorder: '#059669',
+            edgeLabelBackground: '#FFFFFF'
+        },
+        er: {
+            diagramPadding: 40,
+            layoutDirection: 'TB',
+            minEntityWidth: 180,
+            minEntityHeight: 60,
+            entityPadding: 16,
+            fontSize: 13,
+            useMaxWidth: true
+        },
+        securityLevel: 'loose'
+    });
+</script>
+
+</body>
+</html>

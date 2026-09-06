@@ -1,0 +1,105 @@
+---
+title: Use Case Diagram - RITUN
+---
+
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'fontFamily': 'Inter, Segoe UI, sans-serif',
+    'lineColor': '#64748b'
+  }
+}}%%
+
+flowchart LR
+
+    %% =========================
+    %% ACTOR
+    %% =========================
+
+    User(("👤<br/><b>Pengguna</b>")):::actorDef
+
+
+    %% =========================
+    %% SYSTEM BOUNDARY
+    %% =========================
+
+    subgraph SystemBoundary ["📱 RITUN - Self-Discipline App"]
+        direction TB
+
+        %% DASHBOARD
+        UC_Dash(["📊 Melihat Dashboard"]):::ucDash
+        UC_XP(["⭐ Melihat XP & Streak"]):::ucDash
+        UC_Prog(["📈 Melihat Progres Hafalan"]):::ucDash
+
+        %% APPLICATION LOCK
+        UC_Atur(["⚙️ Mengatur Aplikasi Terkunci"]):::ucLock
+        UC_Buka(["🔓 Mengakses Aplikasi Terkunci"]):::ucLock
+
+        %% RECITATION
+        UC_Setor(["📖 Melakukan Setoran Hafalan"]):::ucRecite
+        UC_Ayat(["🎲 Mendapatkan Ayat Acak Juz 30"]):::ucRecite
+        UC_Rekam(["🎙️ Merekam Bacaan"]):::ucRecite
+        UC_Eval(["🤖 Mengevaluasi Bacaan"]):::ucRecite
+        UC_Ulang(["🔄 Mengulang Setoran"]):::ucRecite
+
+        %% TIMER
+        UC_Timer(["⏱️ Menggunakan Aplikasi<br/>dalam Batas Waktu"]):::ucLock
+        UC_SetorLagi(["🔁 Melakukan Setoran<br/>untuk Akses Berikutnya"]):::ucRecite
+
+
+        %% =========================
+        %% INCLUDE / EXTEND
+        %% =========================
+
+        UC_Buka -.->|"<<include>>"| UC_Setor
+
+        UC_Setor -.->|"<<include>>"| UC_Ayat
+        UC_Setor -.->|"<<include>>"| UC_Rekam
+        UC_Setor -.->|"<<include>>"| UC_Eval
+
+        UC_Ulang -.->|"<<extend>><br/>(jika bacaan tidak sesuai)"| UC_Setor
+
+        UC_Buka -.->|"<<include>>"| UC_Timer
+
+        UC_SetorLagi -.->|"<<extend>><br/>(setelah waktu habis)"| UC_Setor
+
+
+        %% DASHBOARD
+        UC_XP -.->|"<<extend>>"| UC_Dash
+        UC_Prog -.->|"<<extend>>"| UC_Dash
+
+    end
+
+
+    %% =========================
+    %% ACTOR RELATION
+    %% =========================
+
+    User --- UC_Dash
+    User --- UC_Atur
+    User --- UC_Buka
+    User --- UC_Ulang
+    User --- UC_SetorLagi
+
+
+    %% =========================
+    %% STYLING
+    %% =========================
+
+    classDef actorDef fill:#e0e7ff,stroke:#4f46e5,stroke-width:2px,color:#312e81,font-weight:bold
+
+    classDef ucDash fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a8a,font-weight:600
+
+    classDef ucLock fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#581c87,font-weight:600
+
+    classDef ucRecite fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d,font-weight:600
+
+    class User actorDef
+
+    class UC_Dash,UC_XP,UC_Prog ucDash
+    class UC_Atur,UC_Buka,UC_Timer ucLock
+    class UC_Setor,UC_Ayat,UC_Rekam,UC_Eval,UC_Ulang,UC_SetorLagi ucRecite
+
+    style SystemBoundary fill:#f8fafc,stroke:#94a3b8,stroke-width:2.5px,stroke-dasharray:5 5,color:#0f172a,font-weight:bold
+
+    linkStyle default stroke:#64748b,stroke-width:1.5px

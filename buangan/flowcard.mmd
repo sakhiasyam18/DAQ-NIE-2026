@@ -1,0 +1,75 @@
+---
+title: Alur Penggunaan Aplikasi Ritun (Non-Teknis)
+---
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#D1FAE5',
+    'primaryBorderColor': '#059669',
+    'primaryTextColor': '#064E3B',
+    'lineColor': '#6B7280',
+    'textColor': '#1F2937',
+    'fontFamily': 'Inter, system-ui, sans-serif'
+  }
+}}%%
+
+graph TD
+    %% ==========================================
+    %% DEFINISI GAYA (STYLE) UNTUK NODE
+    %% ==========================================
+    classDef startNode fill:#059669,stroke:#047857,stroke-width:2px,color:#ffffff,font-weight:bold,rx:10px,ry:10px;
+    classDef menuNode fill:#D1FAE5,stroke:#059669,stroke-width:2px,color:#064E3B,font-weight:bold,rx:8px,ry:8px;
+    classDef actionNode fill:#FFFFFF,stroke:#10B981,stroke-width:2px,color:#1F2937,rx:8px,ry:8px;
+    classDef conditionNode fill:#FEF3C7,stroke:#D97706,stroke-width:2px,color:#92400E,font-weight:bold;
+    classDef successNode fill:#DCFCE7,stroke:#16A34A,stroke-width:2px,color:#166534,font-weight:bold,rx:8px,ry:8px;
+    classDef errorNode fill:#FEE2E2,stroke:#EF4444,stroke-width:2px,color:#991B1B,font-weight:bold,rx:8px,ry:8px;
+    classDef progressNode fill:#EFF6FF,stroke:#3B82F6,stroke-width:2px,color:#1E3A8A,font-weight:bold,rx:8px,ry:8px;
+
+    %% ==========================================
+    %% NODE / KOTAK ALUR
+    %% ==========================================
+    Start([📱 Buka Aplikasi RITUN]):::startNode
+
+    %% Cabang Kiri: Pengaturan
+    MenuPengaturan(⚙️ Menu Pengaturan):::menuNode
+    PilihAplikasi["Pilih Aplikasi yang Dikunci<br/><i>(Contoh: Instagram, TikTok)</i>"]:::actionNode
+
+    %% Cabang Kanan: Setoran Hafalan
+    MenuSetoran(📖 Setoran Hafalan):::menuNode
+    PilihAyat["Muncul Teks Arab dari Juz 30<br/><i>(Contoh: Surah An-Naba, Ayat 1-10)</i>"]:::actionNode
+    RekamBacaan[🎙️ Rekam Bacaan]:::actionNode
+    CekBacaan{Sistem Mengecek<br/>Kebenaran Bacaan}:::conditionNode
+    
+    StatusBenar([✅ Bacaan Benar]):::successNode
+    StatusSalah([❌ Ada Kesalahan]):::errorNode
+    
+    UlangiRekaman[Ulangi Rekaman]:::actionNode
+    BukaAplikasi(🔓 Akses Aplikasi Dibuka!):::successNode
+    
+    %% Titik Temu: Progres
+    LihatProgres(📊 Lihat Progres & Streak Hafalan):::progressNode
+
+    %% ==========================================
+    %% GARIS HUBUNG / ALUR
+    %% ==========================================
+    Start --> MenuPengaturan
+    Start --> MenuSetoran
+    
+    %% Alur Pengaturan
+    MenuPengaturan --> PilihAplikasi
+    PilihAplikasi -.-> LihatProgres
+    
+    %% Alur Setoran
+    MenuSetoran --> PilihAyat
+    PilihAyat --> RekamBacaan
+    RekamBacaan --> CekBacaan
+    
+    %% Percabangan Kondisi
+    CekBacaan -->|Sesuai & Lancar| StatusBenar
+    CekBacaan -->|Perlu Diperbaiki| StatusSalah
+    
+    StatusSalah --> UlangiRekaman
+    UlangiRekaman --> RekamBacaan
+    
+    StatusBenar --> BukaAplikasi
+    BukaAplikasi --> LihatProgres

@@ -1,0 +1,143 @@
+---
+config:
+  layout: elk
+  theme: base
+  themeVariables:
+    fontFamily: "Inter, Segoe UI, Arial, sans-serif"
+    fontSize: 14px
+    primaryTextColor: "#1e293b"
+    lineColor: "#94a3b8"
+    clusterBkg: "#ffffff"
+    clusterBorder: "#cbd5e1"
+---
+
+flowchart TD
+
+    A([Mulai])
+
+    B[Pengguna Membuka<br/>Instagram / TikTok / Game]
+
+    C{Apakah Aplikasi<br/>Sedang Dikunci?}
+
+    D[Pengguna Mengakses<br/>Aplikasi Secara Normal]
+
+    E[Ritun Menahan Akses<br/>ke Aplikasi]
+
+    F[Sistem Memilih Ayat<br/>Secara Acak dari Juz 30]
+
+    G[Menampilkan Target<br/>Hafalan]
+
+    H[Pengguna Merekam<br/>Bacaan Hafalan]
+
+    I[Sistem Melakukan<br/>Pengecekan Bacaan]
+
+    J{Bacaan Sesuai?}
+
+    K[Menampilkan Hasil<br/>Setoran Berhasil]
+
+    L[Membuka Akses<br/>Aplikasi]
+
+    M[Timer Akses<br/>45 Menit]
+
+    N{Waktu 45 Menit<br/>Sudah Habis?}
+
+    O[Pengguna Tetap Menggunakan<br/>Aplikasi]
+
+    P{Ingin Melanjutkan<br/>Penggunaan?}
+
+    Q[Meminta Setoran<br/>Hafalan Baru]
+
+    R[Menampilkan Ayat<br/>yang Benar]
+
+    S[Pengguna Mengulangi<br/>Setoran]
+
+    T([Selesai])
+
+
+    %% =========================
+    %% ALUR UTAMA
+    %% =========================
+
+    A --> B
+    B --> C
+
+    C -->|Tidak| D
+    D --> T
+
+    C -->|Ya| E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+
+    J -->|Ya| K
+    K --> L
+    L --> M
+    M --> N
+
+    N -->|Belum| O
+    O --> N
+
+    N -->|Sudah| P
+
+    P -->|Tidak| T
+    P -->|Ya| Q
+    Q --> F
+
+    J -->|Tidak| R
+    R --> S
+    S --> H
+
+
+    %% =========================
+    %% STYLING
+    %% =========================
+
+    classDef startEnd fill:#ffffff,stroke:#475569,stroke-width:2.5px,color:#0f172a,font-weight:bold
+
+    classDef process fill:#ffffff,stroke:#64748b,stroke-width:1.5px,color:#1e293b
+
+    classDef decision fill:#ffffff,stroke:#c026d3,stroke-width:2px,color:#86198f,font-weight:bold
+
+    classDef locked fill:#fdf4ff,stroke:#e879f9,stroke-width:1.5px,color:#86198f
+
+    classDef ai fill:#ecfeff,stroke:#22d3ee,stroke-width:1.5px,color:#155e75
+
+    classDef success fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#166534,font-weight:bold
+
+    classDef retry fill:#ffedd5,stroke:#f97316,stroke-width:1.5px,color:#9a3412
+
+
+    class A,T startEnd
+    class B,D,F,G,H,K,L,M,O,Q process
+    class C,J,N,P decision
+    class E locked
+    class I ai
+    class K,L success
+    class R,S,Q retry
+
+
+    %% =========================
+    %% SPECIAL STYLING
+    %% =========================
+
+    style A fill:#f8fafc,stroke:#475569,stroke-width:2.5px
+
+    style C fill:#ffffff,stroke:#64748b,stroke-width:2px
+
+    style J fill:#ffffff,stroke:#c026d3,stroke-width:2.5px
+
+    style N fill:#ffffff,stroke:#c026d3,stroke-width:2.5px
+
+    style P fill:#ffffff,stroke:#c026d3,stroke-width:2.5px
+
+    style K fill:#dcfce7,stroke:#16a34a,stroke-width:2.5px
+
+    style L fill:#dcfce7,stroke:#16a34a,stroke-width:2.5px
+
+    style R fill:#ffedd5,stroke:#f97316,stroke-width:2px
+
+    style T fill:#f8fafc,stroke:#475569,stroke-width:2.5px
+
+    linkStyle default stroke:#94a3b8,stroke-width:1.5px
