@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#FCF9F8",
+            "canvas-bg": "#F5F5F6",
+            "primary": "#7C9A5A",
+            "primary-hover": "#6B874C",
+            "sage-subtle": "#F0F4EC",
+            "sage-border": "#E2EBDC",
+            "sage-accent": "#9FB384",
+            "text-primary": "#1A1A1A",
+            "text-secondary": "#71717A",
+            "text-muted": "#9A9A9A",
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          },
+          boxShadow: {
+            'modal': '0 10px 30px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.02)',
+            'btn': '0 6px 20px rgba(124,154,90,0.25)',
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        height: 100dvh;
+        margin: 0;
+        padding: 0;
+        background-color: #F5F5F6;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        color: #1A1A1A;
+        overflow: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .pb-safe {
+        padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+      }
+      .pt-safe {
+        padding-top: max(env(safe-area-inset-top, 0px), 16px);
+      }
+    }
+  </style>
+</head>
+<body class="bg-canvas-bg text-text-primary antialiased flex flex-col justify-between h-screen select-none relative overflow-hidden">
+<!-- 1. Simulated Frosted Intercepted Instagram Background -->
+<div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+<!-- Blurred Mock Feed Content -->
+<div class="w-full flex flex-col opacity-25 filter blur-[7px] space-y-4 px-4 pt-8">
+<!-- Mock Topbar -->
+<div class="flex items-center justify-between pb-2 border-b border-zinc-200">
+<span class="font-bold text-xl italic tracking-tight text-zinc-800">Instagram</span>
+<div class="flex items-center space-x-3 text-zinc-700">
+<span class="material-symbols-outlined text-2xl">favorite</span>
+<span class="material-symbols-outlined text-2xl">send</span>
+</div>
+</div>
+<!-- Mock Stories -->
+<div class="flex items-center space-x-3 py-1">
+<div class="w-13 h-13 rounded-full bg-zinc-200 p-0.5"><div class="w-12 h-12 rounded-full bg-zinc-300"></div></div>
+<div class="w-13 h-13 rounded-full bg-zinc-200 p-0.5"><div class="w-12 h-12 rounded-full bg-zinc-300"></div></div>
+<div class="w-13 h-13 rounded-full bg-zinc-200 p-0.5"><div class="w-12 h-12 rounded-full bg-zinc-300"></div></div>
+<div class="w-13 h-13 rounded-full bg-zinc-200 p-0.5"><div class="w-12 h-12 rounded-full bg-zinc-300"></div></div>
+</div>
+<!-- Mock Post Image -->
+<div class="w-full h-52 rounded-2xl bg-zinc-200"></div>
+</div>
+<!-- Frosted Overlay Scrim with Soft Ambient Organic Glow -->
+<div class="absolute inset-0 bg-[#F5F5F6]/85 backdrop-blur-md"></div>
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-80 h-80 bg-[#EAF2E4]/60 rounded-full blur-3xl pointer-events-none"></div>
+</div>
+<!-- Main Viewport Layout Wrapper -->
+<div class="relative z-10 w-full h-full flex flex-col justify-between items-center px-4 pt-safe pb-safe max-w-[420px] mx-auto">
+<!-- Top Status Header Pill -->
+<header class="w-full flex justify-center pt-2 shrink-0">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/95 border border-black/[0.06] shadow-xs backdrop-blur-md">
+<!-- Instagram gradient mark -->
+<div class="w-4 h-4 rounded-md bg-gradient-to-tr from-[#FFDC80] via-[#FD1D1D] to-[#833AB4] flex items-center justify-center shadow-xs">
+<div class="w-2.5 h-2.5 rounded-xs border-1.5 border-white flex items-center justify-center">
+<div class="w-0.5 h-0.5 bg-white rounded-full"></div>
+</div>
+</div>
+<span class="text-xs font-semibold text-text-primary tracking-tight">Instagram Dibatasi</span>
+<span class="text-zinc-300 text-xs">•</span>
+<div class="inline-flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[13px]">lock_clock</span>
+<span class="text-xs font-medium text-text-secondary">Barier Sadar</span>
+</div>
+</div>
+</header>
+<!-- 2. Floating Centered Ritun Modal Sheet (Soft-Minimalist) -->
+<main class="w-full my-auto py-2">
+<div class="w-full bg-white rounded-[28px] border border-black/[0.06] shadow-modal px-5 py-6 sm:px-6 flex flex-col items-center">
+<!-- Ritun Transparent Logo (Prominent 48-52px height) -->
+<div class="mb-3 flex items-center justify-center"><img alt="Ritun Logo" class="h-14 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4IoqLko7527HrSoxpvaBc7asSpzjfLAuRxZQPD9rI1gGGpTQ-MxjP5O9MSkzpO8lPaytFKMoA9owsLu3m6_BOeoexrTpqsQK4vTbGIdptsM7bWVV26mvEXcT-19_wElkfe3kfQicj69MwTj58DXhQojQX4WaXn2vYpYpEjw4jIBC3dzoBIGLVJNRzC6dhWFJ8ljfQyJ36yOlchSw_r1rtfcANtFSUZn-fdu2F52qDoq6RHuIyaHCVtoFrR1xH-xaQ"></div>
+<!-- Headline & Mindful Description -->
+<h1 class="text-2xl font-bold text-text-primary tracking-tight text-center mb-1.5">
+          Tahan Dulu!
+        </h1>
+<p class="text-xs text-text-secondary text-center max-w-[290px] leading-relaxed mb-4">
+          Kamu baru saja membuka Instagram. Sebelum lanjut, selesaikan setoran hafalan singkat untuk membuka akses fokus <span class="font-semibold text-text-primary">15 menit</span>.
+        </p>
+<!-- Target Setoran Card -->
+<div class="w-full bg-[#FAFAF9] rounded-2xl p-4 border border-[rgba(124,154,90,0.18)] mb-4 flex flex-col">
+<!-- Top Row: Badge + Surah Info -->
+<div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-black/[0.05]">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-sage-subtle text-primary tracking-tight">
+              Target Setoran Hafalan
+            </span>
+<div class="text-right">
+<span class="text-xs font-bold text-text-primary block tracking-tight">
+                QS. Al-Humazah: 1–3
+              </span>
+<span class="text-[10px] text-text-muted font-medium">Juz 30 • Makkiyah</span>
+</div>
+</div>
+<!-- Focus Message & Mode -->
+<div class="flex flex-col items-center text-center">
+<!-- Subtle Sage Icon Badge -->
+<div class="w-9 h-9 rounded-full bg-sage-subtle flex items-center justify-center mb-2 text-primary">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+</div>
+<h2 class="text-sm font-bold text-text-primary tracking-tight mb-1">
+              Uji Hafalan dari Ingatan
+            </h2>
+<p class="text-[11px] leading-relaxed text-text-secondary font-normal px-1 mb-3">
+              Bacakan QS. Al-Humazah ayat 1 hingga 3 secara tartil tanpa melihat mushaf. Teks ayat sengaja disembunyikan untuk melatih daya ingat murni.
+            </p>
+<!-- Mode Chip -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-subtle text-primary text-[11px] font-semibold tracking-tight">
+<span class="material-symbols-outlined text-[14px]">visibility_off</span>
+<span class="">3 Ayat • Mode Mandiri</span>
+</div>
+</div>
+</div>
+<!-- Primary & Secondary Action Buttons -->
+<div class="w-full flex flex-col items-center gap-2.5">
+<!-- Primary Olive Green CTA Pill -->
+<button class="w-full h-12 rounded-full bg-primary hover:bg-primary-hover active:scale-[0.985] transition-all duration-150 text-white font-semibold text-sm shadow-btn flex items-center justify-center gap-2 tracking-tight" id="start-recite-btn" type="button">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">mic</span>
+<span class="">Mulai Setor Hafalan</span>
+</button>
+<!-- Interactive Listening Indicator Bar (Hidden until toggled) -->
+<div class="hidden w-full bg-sage-subtle rounded-full py-2 px-4 items-center justify-between animate-pulse" id="listening-bar">
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-xs text-primary font-medium">Mendengarkan tartil dari ingatan...</span>
+</div>
+<span class="material-symbols-outlined text-primary text-sm">graphic_eq</span>
+</div>
+<!-- Secondary Clean Ghost/Outline Button -->
+<button class="w-full py-2 rounded-full flex items-center justify-center gap-1.5 text-xs font-semibold text-text-primary hover:text-primary transition-colors duration-150 active:opacity-75" id="exit-btn" type="button">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+<span class="">Tutup Instagram &amp; Kembali Produktif</span>
+</button>
+</div>
+</div>
+</main>
+<!-- 3. Bottom Daily Streak Dock Pill -->
+<footer class="w-full flex justify-center pb-2 shrink-0">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-black/[0.05] shadow-xs">
+<div class="flex items-center gap-1 text-xs text-text-secondary font-medium">
+<span class="">🌿</span>
+<span class="">Ritun Murajaah</span>
+</div>
+<span class="text-zinc-300 text-xs">•</span>
+<div class="flex items-center gap-1 text-xs font-bold text-primary">
+<span class="">🔥</span>
+<span class="">5 Hari Beruntun</span>
+</div>
+</div>
+</footer>
+<!-- iOS Indicator Bar -->
+<div class="w-28 h-1 bg-zinc-300/80 rounded-full mb-1 shrink-0"></div>
+</div>
+<!-- Client Script for Interactive State Preview -->
+<script>
+    const reciteBtn = document.getElementById('start-recite-btn');
+    const listeningBar = document.getElementById('listening-bar');
+    const exitBtn = document.getElementById('exit-btn');
+
+    if (reciteBtn && listeningBar) {
+      reciteBtn.addEventListener('click', () => {
+        const isHidden = listeningBar.classList.contains('hidden');
+        if (isHidden) {
+          listeningBar.classList.remove('hidden');
+          listeningBar.classList.add('flex');
+          reciteBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]">pause</span><span>Mendengarkan Tartil...</span>';
+          reciteBtn.classList.replace('bg-primary', 'bg-primary-hover');
+          setTimeout(() => {
+            window.location.href = '../02_ai_cek_bacaan_ritun/code.html';
+          }, 800);
+        } else {
+          listeningBar.classList.add('hidden');
+          listeningBar.classList.remove('flex');
+          reciteBtn.innerHTML = '<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: \'FILL\' 1;">mic</span><span>Mulai Setor Hafalan</span>';
+          reciteBtn.classList.replace('bg-primary-hover', 'bg-primary');
+        }
+      });
+    }
+
+    if (exitBtn) {
+      exitBtn.addEventListener('click', () => {
+        exitBtn.innerHTML = '<span class="material-symbols-outlined text-sm animate-spin">sync</span><span>Menutup Instagram...</span>';
+        setTimeout(() => {
+          exitBtn.innerHTML = '<span class="material-symbols-outlined text-sm">check</span><span>Kembali ke Produktivitas</span>';
+          setTimeout(() => {
+             window.location.href = '../dashboard_utama_ritun_soft_minimalist/code.html';
+          }, 400);
+        }, 700);
+      });
+    }
+  </script>
+
+
+</body></html>

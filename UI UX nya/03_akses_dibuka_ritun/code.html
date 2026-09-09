@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "ritun-bg": "#F8F8F7",
+            "ritun-card": "#FFFFFF",
+            "ritun-primary": "#7C9A5A",
+            "ritun-primary-dark": "#4B662D",
+            "ritun-sage-light": "#F0F4EC",
+            "ritun-sage-border": "#E2EBDC",
+            "ritun-dark": "#1A1A1A",
+            "ritun-muted": "#71717A",
+            "ritun-subtle": "#A1A1AA",
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            arabic: ['"Amiri"', 'serif'],
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        height: 100dvh;
+        margin: 0;
+        padding: 0;
+        background-color: #F8F8F7;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        color: #1A1A1A;
+        overflow: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .pb-safe {
+        padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+      }
+      .pt-safe {
+        padding-top: max(env(safe-area-inset-top, 0px), 16px);
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#F8F8F7] text-ritun-dark antialiased flex flex-col justify-between h-screen select-none">
+<div class="relative w-full h-full flex flex-col justify-between px-5 pt-safe pb-safe max-w-md mx-auto">
+<!-- Top Ambient Glow -->
+<div class="absolute -top-16 left-1/2 -translate-x-1/2 w-80 h-72 bg-[#EAF2E4]/80 rounded-full blur-3xl pointer-events-none -z-10"></div>
+<!-- Top Status Header Badge -->
+<header class="w-full flex justify-center pt-2">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-ritun-sage-border shadow-xs backdrop-blur-md">
+<div class="w-5 h-5 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 flex items-center justify-center text-white shadow-xs">
+<span class="material-symbols-outlined text-[12px] leading-none">photo_camera</span>
+</div>
+<span class="text-xs font-semibold tracking-wide text-zinc-700">Instagram • Akses Terbuka</span>
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C9A5A] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-[#7C9A5A]"></span>
+</span>
+</div>
+</header>
+<!-- Center Flow: Hero Emblem & Content -->
+<main class="flex-1 flex flex-col items-center justify-center my-auto py-2">
+<!-- Hero Unlock Ring (Layered Soft Sage) -->
+<div class="relative mb-5 flex items-center justify-center">
+<!-- Outer soft ring -->
+<div class="w-24 h-24 rounded-full bg-[#F0F4EC] flex items-center justify-center">
+<!-- Inner ring -->
+<div class="w-18 h-18 w-[72px] h-[72px] rounded-full bg-white shadow-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl text-[#7C9A5A]" style="font-variation-settings: 'FILL' 1;">lock_open_right</span>
+</div>
+</div>
+<!-- Verification Check Bubble -->
+<div class="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#7C9A5A] text-white flex items-center justify-center shadow-md ring-2 ring-white">
+<span class="material-symbols-outlined text-[17px] font-bold">check</span>
+</div>
+</div>
+<!-- Success Chip & Typography -->
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F0F4EC] text-[#7C9A5A] mb-2.5">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-xs font-semibold tracking-tight">Tuntas &amp; Mumtaz</span>
+</div>
+<h1 class="text-[22px] font-bold text-zinc-900 tracking-tight text-center leading-tight">
+        Alhamdulillah, Akses Dibuka!
+      </h1>
+<p class="text-xs text-ritun-muted text-center mt-1 mb-4 max-w-[280px] leading-relaxed">
+        Setoran hafalan <span class="font-medium text-zinc-800">QS. Al-Humazah 1–3</span> terverifikasi tepat dan tartil.
+      </p>
+<!-- Verified Ayah Card -->
+<div class="w-full bg-white rounded-2xl p-4 border border-zinc-100 shadow-xs mb-3 text-center flex flex-col items-center">
+<p class="font-arabic text-2xl text-zinc-900 leading-loose py-0.5" dir="rtl">
+          وَيْلٌۭ لِّكُلِّ هُمَزَةٍۢ لُّمَزَةٍ
+        </p>
+<p class="text-[11px] text-ritun-muted italic mt-0.5 line-clamp-1">
+          "Kecelakaanlah bagi setiap pengumpat lagi pencela"
+        </p>
+</div>
+<!-- Stats Grid (Streak & Hafalan) -->
+<div class="w-full grid grid-cols-2 gap-2.5 mb-3">
+<!-- Streak Card -->
+<div class="bg-white rounded-2xl p-3 border border-zinc-100 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-7 h-7 rounded-xl bg-[#F0F4EC] text-[#7C9A5A] flex items-center justify-center">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#F0F4EC] text-[#7C9A5A]">+1 Hari</span>
+</div>
+<div>
+<div class="text-base font-bold text-zinc-900">6 Hari</div>
+<div class="text-[11px] text-ritun-muted">Streak Murajaah</div>
+</div>
+</div>
+<!-- Juz / Verses Card -->
+<div class="bg-white rounded-2xl p-3 border border-zinc-100 shadow-xs flex flex-col justify-between">
+<div class="flex items-center justify-between mb-2">
+<div class="w-7 h-7 rounded-xl bg-zinc-100 text-zinc-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-base">menu_book</span>
+</div>
+<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-zinc-100 text-zinc-600">Juz 30</span>
+</div>
+<div>
+<div class="text-base font-bold text-zinc-900">+3 Ayat</div>
+<div class="text-[11px] text-ritun-muted">Tersimpan ke Memori</div>
+</div>
+</div>
+</div>
+<!-- Window Access & Live Countdown Card -->
+<div class="w-full bg-white rounded-2xl p-3 border border-zinc-100 shadow-xs flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-[#F0F4EC] flex items-center justify-center text-[#7C9A5A]">
+<span class="material-symbols-outlined text-sm">schedule</span>
+</div>
+<span class="text-xs font-semibold text-zinc-800">Jendela Akses: 15 Menit</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-[11px] text-ritun-muted">Membuka otomatis dlm</span>
+<span class="text-xs font-bold text-[#7C9A5A]" id="countdown-num">3s</span>
+</div>
+</div>
+<!-- Micro Progress Bar -->
+<div class="w-full h-1.5 bg-zinc-100 rounded-full overflow-hidden">
+<div class="h-full bg-[#7C9A5A] rounded-full transition-all duration-1000 ease-linear" id="progress-indicator" style="width: 100%;"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Actions -->
+<footer class="w-full flex flex-col gap-2 pt-2">
+<a href="../05_setelah_45_menit_maka_instagram_terkunci_overlay_lock_screen_ritun_soft_minimalist/code.html" class="w-full py-3.5 px-6 rounded-full bg-[#7C9A5A] hover:bg-[#6e8a4e] active:scale-[0.98] transition-all text-white font-semibold text-[15px] shadow-sm flex items-center justify-center gap-2" id="open-app-btn">
+<span>Buka Aplikasi Sekarang</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+<a href="../halaman_progres_ritun_soft_minimalist/code.html" class="w-full py-2.5 text-xs font-medium text-ritun-muted hover:text-zinc-900 transition-colors flex items-center justify-center gap-1.5 active:opacity-75" id="stay-dashboard-btn">
+<span class="material-symbols-outlined text-sm text-[#7C9A5A]">spa</span>
+<span>Cukupkan, Kembali ke Ritun</span>
+</a>
+</footer>
+</div>
+<script>
+    (function() {
+      let timeLeft = 3;
+      const countdownEl = document.getElementById('countdown-num');
+      const progressBar = document.getElementById('progress-indicator');
+      const openBtn = document.getElementById('open-app-btn');
+      const returnBtn = document.getElementById('stay-dashboard-btn');
+
+      const timer = setInterval(() => {
+        timeLeft--;
+        if (timeLeft >= 0) {
+          if (countdownEl) countdownEl.textContent = timeLeft + 's';
+          if (progressBar) {
+            progressBar.style.width = (timeLeft / 3) * 100 + '%';
+          }
+        }
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          if (openBtn) {
+            openBtn.classList.add('ring-2', 'ring-[#7C9A5A]/40');
+          }
+        }
+      }, 1000);
+
+      if (returnBtn) {
+        returnBtn.addEventListener('click', () => {
+          clearInterval(timer);
+          if (countdownEl) countdownEl.textContent = 'Batal';
+          if (progressBar) progressBar.style.width = '0%';
+        });
+      }
+
+      if (openBtn) {
+        openBtn.addEventListener('click', () => {
+          clearInterval(timer);
+        });
+      }
+    })();
+  </script>
+</body></html>

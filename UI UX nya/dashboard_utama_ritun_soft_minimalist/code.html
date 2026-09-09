@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Dashboard Utama - Ritun</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ritun: {
+            bg: "#F5F5F6",
+            card: "#FFFFFF",
+            primary: "#7C9A5A",
+            'primary-dark': "#4B662D",
+            sage: "#F0F4EC",
+            'sage-light': "#F5F8F1",
+            text: "#1A1A1A",
+            subtext: "#737571",
+            border: "#EBEBEB",
+            muted: "#9E9E9C",
+            dark: "#1A1A1A"
+          }
+        },
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif']
+        },
+        boxShadow: {
+          'soft': '0 2px 8px -2px rgba(0, 0, 0, 0.04), 0 1px 3px -1px rgba(0, 0, 0, 0.02)',
+          'card': '0 4px 16px -4px rgba(0, 0, 0, 0.03)',
+          'float-nav': '0 8px 30px rgba(0, 0, 0, 0.06)'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    -webkit-tap-highlight-color: transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .progress-ring__circle {
+    transition: stroke-dashoffset 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+  /* Custom Soft Organic Toggle */
+  .ritun-switch-input:checked ~ .ritun-switch-track {
+    background-color: #7C9A5A;
+  }
+  .ritun-switch-input:checked ~ .ritun-switch-thumb {
+    transform: translateX(20px);
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 24;
+  }
+</style>
+</head>
+<body class="bg-ritun-bg text-ritun-text antialiased min-h-screen pb-28 selection:bg-ritun-primary/20">
+<!-- Top Bar -->
+<header class="sticky top-0 z-40 bg-ritun-bg/90 backdrop-blur-md transition-colors">
+<div class="max-w-md mx-auto px-5 pt-3 pb-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<!-- Logo Ritun -->
+<div class="w-10 h-10 rounded-full border border-ritun-border/70 flex items-center justify-center p-1.5 bg-white/70">
+<img alt="Ritun Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj8cl8NHh6k7qzGYNlsTIhhtn9O1a_0Bu_Ivseqa_yrY8FxymLOM_UWybY1m7GbK7jsS7dFZ6c4lSW6Lm9ivqKzKLea7y0mYKej_rZfA5PGfPY5H9Q0MG4SWek1DUc6_Wkj1Bmkh1zNEEIojl9d9IkzT37SAaWCtRzaNRayq6LBLM2l3DzAUfbIATuxOLOOcOgJKDzbrTbMO_svUcBbWvXzaUKrRw8zitlGzZuHc_Dk5ESjToquit9OYlBIRd7FsNt"/>
+</div>
+<div>
+<p class="text-[12.5px] leading-tight font-medium text-ritun-subtext">Assalamu'alaikum,</p>
+<h1 class="text-[20px] leading-tight font-bold tracking-tight text-ritun-text">Kaikii</h1>
+</div>
+</div>
+<div class="flex items-center">
+<button aria-label="Notifikasi" class="w-10 h-10 rounded-full bg-white border border-ritun-border/80 flex items-center justify-center text-ritun-text hover:bg-ritun-sage/40 transition-colors shadow-soft">
+<span class="material-symbols-outlined text-[21px] text-ritun-text">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-4 pt-2 space-y-3.5">
+<!-- Hero Status Kunci Card -->
+<section class="bg-white rounded-3xl p-6 border border-ritun-border/60 shadow-soft flex flex-col items-center text-center">
+<!-- Icon pill sage lembut -->
+<div class="w-16 h-16 rounded-full bg-ritun-sage flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-[30px] text-ritun-primary" id="lock-icon">lock</span>
+</div>
+<h2 class="text-[20px] font-bold tracking-tight text-ritun-text" id="status-title">Kunci Aktif</h2>
+<p class="text-[13px] text-ritun-subtext mt-0.5 mb-4" id="status-desc">Hafalkan untuk Membuka Kunci.</p>
+<!-- Organic iOS-style Switch -->
+<label class="relative inline-flex items-center cursor-pointer select-none">
+<input checked="" class="sr-only ritun-switch-input" id="toggle" type="checkbox"/>
+<div class="ritun-switch-track w-[51px] h-[31px] bg-[#E3E3E3] rounded-full transition-colors duration-300"></div>
+<div class="ritun-switch-thumb absolute left-[2px] top-[2px] bg-white w-[27px] h-[27px] rounded-full shadow-[0_2px_5px_rgba(0,0,0,0.12)] transition-transform duration-300 flex items-center justify-center">
+</div>
+</label>
+</section>
+<!-- Sisa Waktu Card -->
+<section class="bg-white rounded-3xl p-6 border border-ritun-border/60 shadow-soft flex flex-col items-center">
+<div class="w-full flex items-center justify-between mb-4">
+<h3 class="text-[16px] font-semibold text-ritun-text tracking-tight">Sisa Waktu</h3>
+<span class="text-[11.5px] font-medium text-ritun-primary bg-ritun-sage px-3 py-1 rounded-full border border-ritun-primary/10">Sesi Berjalan</span>
+</div>
+<!-- Circular Timer Progress -->
+<div class="relative w-48 h-48 flex items-center justify-center my-2">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 120 120">
+<!-- Thin gray track -->
+<circle cx="60" cy="60" fill="transparent" r="50" stroke="#EEF0EC" stroke-linecap="round" stroke-width="6.5"></circle>
+<!-- Earthy olive green active progress ring -->
+<circle class="progress-ring__circle text-ritun-primary" cx="60" cy="60" fill="transparent" r="50" stroke="currentColor" stroke-linecap="round" stroke-width="6.5" style="stroke-dasharray: 314.16; stroke-dashoffset: 100;"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-[34px] font-bold tracking-tight text-ritun-text leading-none">24:30</span>
+<span class="text-[11px] font-semibold text-ritun-subtext tracking-wider uppercase mt-1.5">MENIT TERSISA</span>
+</div>
+</div>
+</section>
+<!-- Mini Stats Row -->
+<section class="grid grid-cols-3 gap-2.5">
+<!-- Stat 1 -->
+<div class="bg-white rounded-2xl p-3.5 border border-ritun-border/60 shadow-soft flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-ritun-sage flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[19px] text-ritun-primary">menu_book</span>
+</div>
+<span class="text-[20px] font-bold text-ritun-text tracking-tight leading-snug">12</span>
+<span class="text-[11px] font-medium text-ritun-subtext mt-0.5">Total Setoran</span>
+</div>
+<!-- Stat 2 -->
+<div class="bg-white rounded-2xl p-3.5 border border-ritun-border/60 shadow-soft flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-ritun-sage flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[19px] text-ritun-primary">local_fire_department</span>
+</div>
+<span class="text-[20px] font-bold text-ritun-text tracking-tight leading-snug">5</span>
+<span class="text-[11px] font-medium text-ritun-subtext mt-0.5">Streak Hari</span>
+</div>
+<!-- Stat 3 -->
+<div class="bg-white rounded-2xl p-3.5 border border-ritun-border/60 shadow-soft flex flex-col items-center text-center">
+<div class="w-8 h-8 rounded-full bg-ritun-sage flex items-center justify-center mb-1.5">
+<span class="material-symbols-outlined text-[19px] text-ritun-primary">check_circle</span>
+</div>
+<span class="text-[20px] font-bold text-ritun-text tracking-tight leading-snug">145</span>
+<span class="text-[11px] font-medium text-ritun-subtext mt-0.5">Ayat Benar</span>
+</div>
+</section>
+<!-- Aplikasi Terkunci Card -->
+<section class="bg-white rounded-3xl p-4 sm:p-5 border border-ritun-border/60 shadow-soft">
+<div class="flex items-center justify-between mb-3.5 px-1">
+<h3 class="text-[16px] font-semibold text-ritun-text tracking-tight">Aplikasi Terkunci</h3>
+<span class="text-[12.5px] font-medium text-ritun-primary cursor-pointer hover:underline">Kelola</span>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<!-- Instagram App -->
+<div class="bg-ritun-bg/60 rounded-2xl p-3 flex flex-col items-center justify-center relative border border-ritun-border/50">
+<div class="absolute top-1.5 right-1.5 w-5 h-5 bg-ritun-dark rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[11px]">lock</span>
+</div>
+<img alt="Instagram" class="w-12 h-12 mb-2 rounded-2xl shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_25uSubdO4h7pH3KM1fYv8e_ALCm6Qry2QRDIGJzpMu1JymDL7vlOX3JxKMliYldKK-cyMtm8ByNsgair_ot9rPvXGkmYlrpWg81p_xA41zitkKuGu86N7JTT6aeaZMtOVN6KxqfeMIbMsP6nGsx6ALpwg5HGNR8zqayimPQzDp5IzwqDQY4NpXh2Get0RPRhp-shwcwHJ_6P2d4o9HHMjgGRKa6i9aNGEQhgApoEGfVWjXMFzpY"/>
+<span class="text-[12px] font-medium text-ritun-text truncate w-full text-center">Instagram</span>
+</div>
+<!-- TikTok App -->
+<div class="bg-ritun-bg/60 rounded-2xl p-3 flex flex-col items-center justify-center relative border border-ritun-border/50">
+<div class="absolute top-1.5 right-1.5 w-5 h-5 bg-ritun-dark rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[11px]">lock</span>
+</div>
+<img alt="TikTok" class="w-12 h-12 mb-2 rounded-2xl shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu4ycaFhBtoI1jmndRBSKnrmchEvIVWxvDx7lrSgbZKvz-rLvRKVuiuLz_nQE8QQYv1tXQ11PqsAUeTEi4ax6fqPcYOBgked7t2is8ubZcKzAkWKXURFfwue4bUhvHYZEPFVrSEYM-m1WX-lL8DEq_Rz-zuEMncsFDbdyzRYdwCwBzg9QqzYEZRN6xQy1lV0_AGmN7TRi8xAHP2sde0_QbmItMTgyzQNP4OsjYZc_94c7QQscowPc"/>
+<span class="text-[12px] font-medium text-ritun-text truncate w-full text-center">TikTok</span>
+</div>
+<!-- Game App -->
+<div class="bg-ritun-bg/60 rounded-2xl p-3 flex flex-col items-center justify-center relative border border-ritun-border/50">
+<div class="absolute top-1.5 right-1.5 w-5 h-5 bg-ritun-dark rounded-full flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-[11px]">lock</span>
+</div>
+<div class="w-12 h-12 mb-2 rounded-2xl bg-[#52643C] flex items-center justify-center text-white shadow-sm">
+<span class="material-symbols-outlined text-[24px]">sports_esports</span>
+</div>
+<span class="text-[12px] font-medium text-ritun-text truncate w-full text-center">Game</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation: Clean Floating / Curved Minimalist Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-xl border-t border-ritun-border/80 px-6 pt-2 pb-6 shadow-float-nav">
+<div class="max-w-md mx-auto flex justify-around items-center">
+<!-- Active Tab: Beranda -->
+<a class="flex flex-col items-center justify-center text-ritun-primary group" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1, 'wght' 400;">home</span>
+<span class="text-[10.5px] font-semibold mt-1 tracking-tight">Beranda</span>
+</a>
+<!-- Inactive Tab: Progres -->
+<a class="flex flex-col items-center justify-center text-ritun-muted hover:text-ritun-text transition-colors group" href="../halaman_progres_ritun_soft_minimalist/code.html">
+<span class="material-symbols-outlined text-[24px]">insights</span>
+<span class="text-[10.5px] font-medium mt-1 tracking-tight">Progres</span>
+</a>
+<!-- Inactive Tab: Pengaturan -->
+<a class="flex flex-col items-center justify-center text-ritun-muted hover:text-ritun-text transition-colors group" href="../halaman_pengaturan_ritun_soft_minimalist/code.html">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10.5px] font-medium mt-1 tracking-tight">Pengaturan</span>
+</a>
+</div>
+</nav>
+<script>
+  const toggle = document.getElementById('toggle');
+  const lockIcon = document.getElementById('lock-icon');
+  const statusTitle = document.getElementById('status-title');
+  const statusDesc = document.getElementById('status-desc');
+
+  if (toggle) {
+    toggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        lockIcon.textContent = 'lock';
+        lockIcon.className = 'material-symbols-outlined text-[30px] text-ritun-primary';
+        lockIcon.parentElement.className = 'w-16 h-16 rounded-full bg-ritun-sage flex items-center justify-center mb-3 transition-colors';
+        statusTitle.textContent = 'Kunci Aktif';
+        statusDesc.textContent = 'Hafalkan untuk Membuka Kunci.';
+      } else {
+        lockIcon.textContent = 'lock_open';
+        lockIcon.className = 'material-symbols-outlined text-[30px] text-ritun-subtext';
+        lockIcon.parentElement.className = 'w-16 h-16 rounded-full bg-ritun-bg flex items-center justify-center mb-3 transition-colors';
+        statusTitle.textContent = 'Kunci Nonaktif';
+        statusDesc.textContent = 'Semua aplikasi dapat diakses.';
+      }
+    });
+  }
+</script>
+</body></html>

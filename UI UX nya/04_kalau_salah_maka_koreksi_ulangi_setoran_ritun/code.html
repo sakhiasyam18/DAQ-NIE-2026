@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Evaluasi Setoran - Ritun</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              olive: '#7C9A5A',
+              'olive-dark': '#5D7740',
+              'olive-deep': '#4B662D',
+              sage: '#9FB384',
+              'sage-light': '#F0F4EC',
+              'sage-tint': '#E4EBDC',
+            },
+            surface: {
+              bg: '#F8F9FA',
+              card: '#FFFFFF',
+              subtle: '#F1F3F2',
+            },
+            ink: {
+              primary: '#1A1A1A',
+              secondary: '#555A54',
+              muted: '#8E948B',
+            },
+            status: {
+              amber: '#D97706',
+              'amber-soft': '#FEF3C7',
+              'amber-subtle': '#FFFBEB',
+              error: '#DC2626',
+              'error-soft': '#FEE2E2',
+              'error-light': '#FFF5F5',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            quran: ['"Amiri"', 'serif'],
+          },
+          boxShadow: {
+            'card': '0 2px 8px -2px rgba(0,0,0,0.04), 0 1px 3px -1px rgba(0,0,0,0.02)',
+            'float': '0 10px 25px -5px rgba(124, 154, 90, 0.35)',
+            'sheet': '0 -6px 20px rgba(0,0,0,0.03)',
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .font-quran {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      unicode-bidi: isolate;
+      text-align: right;
+    }
+    /* Safe-area insets for modern iOS mobile */
+    .pt-safe {
+      padding-top: max(env(safe-area-inset-top, 24px), 24px);
+    }
+    .pb-safe {
+      padding-bottom: max(env(safe-area-inset-bottom, 16px), 16px);
+    }
+  </style>
+</head>
+<body class="h-full bg-[#E5E8E5] font-sans antialiased text-ink-primary flex justify-center">
+<!-- Mobile Screen Shell (iPhone standard 390px layout) -->
+<div class="w-full max-w-[390px] h-full min-h-screen bg-surface-bg flex flex-col relative overflow-hidden shadow-2xl">
+<!-- TOP NAVIGATION BAR -->
+<header class="pt-safe px-5 pb-3 bg-surface-bg/95 backdrop-blur-md sticky top-0 z-30 flex items-center justify-between border-b border-black/[0.04]">
+<!-- Close / Dismiss Button -->
+<button aria-label="Tutup" class="w-9 h-9 rounded-full bg-white border border-black/[0.06] flex items-center justify-center text-ink-primary shadow-sm active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[19px]">close</span>
+</button>
+<!-- Center App Status Title -->
+<div class="flex items-center gap-1.5 px-3 py-1 bg-white rounded-full border border-black/[0.06] shadow-xs">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+<span class="text-[12px] font-semibold text-ink-primary tracking-tight">Evaluasi Setoran</span>
+</div>
+<!-- Help / Tutorial Button -->
+<button aria-label="Panduan" class="w-9 h-9 rounded-full bg-white border border-black/[0.06] flex items-center justify-center text-ink-secondary shadow-sm active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[19px]">help_outline</span>
+</button>
+</header>
+<!-- SCROLLABLE CONTENT BODY -->
+<main class="flex-1 px-4 pt-3 pb-6 space-y-3.5 overflow-y-auto overscroll-contain">
+<!-- 1. FEEDBACK ALERT HEADER CARD -->
+<section class="bg-surface-card rounded-[22px] p-5 text-center shadow-card border border-black/[0.04] relative overflow-hidden">
+<!-- Background soft aura -->
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 w-36 h-36 bg-amber-100/60 rounded-full blur-2xl pointer-events-none"></div>
+<!-- Alert Icon Pill -->
+<div class="relative inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-status-amber-soft text-status-amber mb-3 mx-auto shadow-inner">
+<span class="material-symbols-outlined text-[26px]">cached</span>
+</div>
+<!-- Tag -->
+<div>
+<span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-bold tracking-wide uppercase bg-status-amber-soft/80 text-amber-800 border border-amber-300/40 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+            Perlu Perbaikan (1 Kesalahan)
+          </span>
+</div>
+<h1 class="text-[20px] font-extrabold text-ink-primary tracking-tight leading-tight">
+          Yuk Perbaiki &amp; Ulangi!
+        </h1>
+<p class="text-[12.5px] text-ink-secondary mt-1.5 leading-relaxed max-w-[290px] mx-auto">
+          Teks ayat kini dimunculkan untuk panduanmu. Cermati bacaan yang benar di bawah ini sebelum mengulang rekaman.
+        </p>
+</section>
+<!-- 2. AYAT MUSHAF CARD (AYAT YANG BENAR) -->
+<section class="bg-surface-card rounded-[22px] p-5 shadow-card border border-brand-olive/20 relative">
+<!-- Badge Header -->
+<div class="flex items-center justify-between pb-3.5 mb-3 border-b border-black/[0.05]">
+<div class="flex items-center gap-1.5">
+<span class="w-5 h-5 rounded-full bg-brand-sage-light text-brand-olive flex items-center justify-center text-[11px] font-bold">
+              ✓
+            </span>
+<span class="text-[11px] font-extrabold tracking-wider uppercase text-brand-olive">
+              Bacaan yang Benar
+            </span>
+</div>
+<span class="text-[11px] font-semibold text-ink-secondary bg-surface-subtle px-2.5 py-0.5 rounded-full">
+            QS. Al-Humazah: 1–3
+          </span>
+</div>
+<!-- Ayat Arabic Text with Highlight -->
+<div class="font-quran text-[27px] leading-[2.5] tracking-normal text-ink-primary py-1 px-1">
+          وَيْلٌۭ لِّكُلِّ <span class="bg-red-100 text-red-900 px-2 py-0.5 rounded-lg border border-red-300/80 font-bold decoration-clone">هُمَزَةٍۢ</span> لُّمَزَةٍ ﴿١﴾ ٱلَّذِى جَمَعَ مَالًۭا وَعَدَّدَهُۥ ﴿٢﴾ يَحْسَبُ أَنَّ مَالَهُۥٓ أَخْلَدَهُۥ ﴿٣﴾
+        </div>
+<!-- Translation & Legend -->
+<div class="mt-4 pt-3 border-t border-black/[0.06] bg-brand-sage-light/35 -mx-5 -mb-5 p-4 rounded-b-[22px]">
+<div class="flex items-center gap-1.5 mb-1.5">
+<span class="text-[10px] font-bold uppercase tracking-wider text-ink-muted">Terjemahan</span>
+<span class="text-[10px] text-red-600 bg-red-50 border border-red-200/60 px-1.5 py-0.2 rounded font-medium ml-auto">
+              Merah = Letak Koreksi
+            </span>
+</div>
+<p class="text-[12px] italic text-ink-secondary leading-relaxed">
+            "Celakalah bagi setiap pengumpat lagi pencela, yang mengumpulkan harta dan menghitung-hitungnya, dia mengira bahwa hartanya itu dapat mengekalkannya."
+          </p>
+</div>
+</section>
+<!-- 3. CATATAN KOREKSI SUARA AI CARD -->
+<section class="bg-surface-card rounded-[22px] p-5 shadow-card border border-black/[0.04] space-y-3.5">
+<!-- Section Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-lg bg-status-amber-soft text-status-amber flex items-center justify-center">
+<span class="material-symbols-outlined text-[15px]">graphic_eq</span>
+</div>
+<h2 class="text-[12px] font-extrabold uppercase tracking-wide text-ink-primary">
+              Catatan Koreksi Suara AI
+            </h2>
+</div>
+<span class="text-[11px] font-semibold text-status-amber bg-status-amber-soft px-2.5 py-0.5 rounded-full border border-amber-200/60">
+            Makhraj Huruf
+          </span>
+</div>
+<!-- Mistake Details Container -->
+<div class="bg-status-error-light border border-status-error-soft rounded-2xl p-3.5 space-y-2.5">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-2">
+<span class="w-6 h-6 rounded-full bg-red-100 text-status-error flex items-center justify-center text-[12px] font-bold shrink-0">
+                !
+              </span>
+<div>
+<span class="text-[13px] font-bold text-ink-primary">
+                  Kata: <span class="font-quran text-[17px] text-red-600">هُمَزَةٍ</span> (Humazah)
+                </span>
+</div>
+</div>
+<span class="text-[11px] font-medium text-ink-muted">Ayat 1</span>
+</div>
+<!-- Diagnosis -->
+<p class="text-[12px] text-ink-secondary leading-relaxed pl-8">
+            Huruf <span class="font-bold text-ink-primary">هـ (Haa Halus)</span> terbaca berat menyerupai bunyi huruf <span class="font-bold text-ink-primary">ح (Khaa/Haa Pedas)</span>.
+          </p>
+<!-- Tips Makhraj Chip -->
+<div class="mt-2 bg-white/90 rounded-xl p-3 border border-red-200/50 flex items-start gap-2.5">
+<span class="text-[14px] leading-none shrink-0 mt-0.5">💡</span>
+<div class="text-[11.5px] leading-snug">
+<span class="font-bold text-ink-primary">Tips Makhraj:</span>
+<span class="text-ink-secondary"> Alirkan nafas lembut dari pangkal tenggorokan dada tanpa desisan atau gesekan kerongkongan.</span>
+</div>
+</div>
+</div>
+<!-- Audio Sample Button (Qari Player) -->
+<div class="flex items-center justify-between p-3 rounded-2xl bg-surface-subtle/80 border border-black/[0.04]">
+<div class="flex items-center gap-3">
+<button aria-label="Putar contoh qari" class="w-10 h-10 rounded-full bg-brand-olive text-white flex items-center justify-center shadow-md active:scale-95 transition-transform" type="button">
+<span class="material-symbols-outlined fill text-[20px] ml-0.5">play_arrow</span>
+</button>
+<div>
+<div class="text-[12px] font-bold text-ink-primary flex items-center gap-1.5">
+                Dengarkan Contoh Qari
+                <span class="material-symbols-outlined text-ink-muted text-[14px]">volume_up</span>
+</div>
+<div class="text-[10.5px] text-ink-muted">Syaikh Mishari Rashid • Ayat 1–3</div>
+</div>
+</div>
+<!-- Soundwave mini preview -->
+<div class="flex items-center gap-1 px-2.5 py-1 bg-white rounded-lg border border-black/[0.05]">
+<div class="w-0.5 h-2 bg-brand-olive rounded-full animate-pulse"></div>
+<div class="w-0.5 h-4 bg-brand-olive rounded-full animate-pulse"></div>
+<div class="w-0.5 h-3 bg-brand-olive rounded-full"></div>
+<div class="w-0.5 h-5 bg-brand-olive rounded-full animate-pulse"></div>
+<div class="w-0.5 h-2 bg-brand-olive rounded-full"></div>
+<span class="text-[10.5px] font-semibold text-brand-olive ml-1">0:08</span>
+</div>
+</div>
+</section>
+<!-- 4. PENGINGAT SISTEM KUNCI HAFALAN -->
+<div class="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-brand-sage-light/60 border border-brand-olive/15 text-[11.5px] text-ink-secondary leading-snug">
+<span class="material-symbols-outlined text-brand-olive text-[19px] shrink-0">lock_clock</span>
+<span>Aplikasi tetap membatasi akses hingga ayat di atas dibaca dengan makhraj yang benar.</span>
+</div>
+</main>
+<!-- BOTTOM FIXED CTA AREA -->
+<footer class="pb-safe px-5 pt-3.5 bg-surface-card/95 backdrop-blur-md border-t border-black/[0.06] shadow-sheet sticky bottom-0 z-30 flex flex-col items-center gap-2">
+<!-- Primary Action: Ulangi Rekaman -->
+<a href="../03_akses_dibuka_ritun/code.html" class="w-full h-13 py-3.5 px-6 rounded-full bg-brand-olive hover:bg-brand-olive-dark active:scale-[0.98] text-white font-bold text-[14px] shadow-float flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[20px]">mic</span>
+<span>Ulangi Setoran Sekarang</span>
+</a>
+<!-- Secondary Action: Pelajari Kata per Kata -->
+<button class="py-2 px-4 rounded-full text-ink-secondary hover:text-ink-primary font-semibold text-[12px] flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px] text-ink-muted">menu_book</span>
+<span>Pelajari Ayat Kata per Kata</span>
+</button>
+</footer>
+</div>
+</body></html>

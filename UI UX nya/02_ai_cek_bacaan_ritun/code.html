@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Ritun AI - Cek Bacaan</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#FCF9F8",
+            "background": "#FCF9F8",
+            "primary": "#4B662D",
+            "primary-container": "#7C9A5A",
+            "secondary": "#52643C",
+            "secondary-container": "#D5EAB7",
+            "sage-tint": "#F0F4EC",
+            "sage-border": "#E2E9DC",
+            "on-surface": "#1A1A1A",
+            "neutral-sub": "#71717A",
+            "neutral-muted": "#9A9A9A",
+            "card-bg": "#FFFFFF",
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            arabic: ['"Amiri"', 'serif']
+          },
+          borderRadius: {
+            '2xl': '1.25rem',
+            '3xl': '1.75rem',
+            '4xl': '2rem'
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #FCF9F8;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom, 16px);
+      }
+      .pt-safe {
+        padding-top: env(safe-area-inset-top, 12px);
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    @keyframes gentlePulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.06); opacity: 0.45; }
+    }
+    @keyframes softRing {
+      0% { transform: scale(0.92); opacity: 0.6; }
+      50% { transform: scale(1.03); opacity: 0.25; }
+      100% { transform: scale(0.92); opacity: 0.6; }
+    }
+    .animate-gentle-pulse {
+      animation: gentlePulse 3.5s ease-in-out infinite;
+    }
+    .animate-soft-ring {
+      animation: softRing 4.2s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen selection:bg-secondary-container">
+<main class="flex-1 flex flex-col w-full max-w-[430px] mx-auto px-6 pt-safe pb-safe justify-between">
+<!-- Header / Navigation Bar -->
+<header class="flex items-center justify-between pt-2 pb-4 w-full">
+<!-- Tombol Batal / Kembali -->
+<button class="w-10 h-10 -ml-1 rounded-full flex items-center justify-center text-on-surface/70 hover:text-on-surface hover:bg-black/5 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+<!-- Status Pill Ritun AI -->
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-sage-border/60 shadow-[0_2px_8px_rgba(0,0,0,0.03)]">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C9A5A] opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-[#7C9A5A]"></span>
+</span>
+<span class="text-xs font-semibold text-on-surface tracking-wide">Ritun AI</span>
+</div>
+<!-- Info/Help Icon -->
+<button class="w-10 h-10 -mr-1 rounded-full flex items-center justify-center text-on-surface/60 hover:text-on-surface hover:bg-black/5 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[22px]">help_outline</span>
+</button>
+</header>
+<!-- Visual AI Check Hero Section -->
+<section class="flex flex-col items-center text-center my-auto py-2">
+<!-- Organic Concentric Rings in Sage / Olive -->
+<div class="relative w-48 h-48 flex items-center justify-center mb-6">
+<!-- Outer Soft Aura -->
+<div class="absolute inset-0 rounded-full bg-[#F0F4EC] animate-soft-ring pointer-events-none"></div>
+<!-- Middle Subtle Ring -->
+<div class="absolute inset-3.5 rounded-full bg-[#E5ECE0] border border-[#D7E2D0] animate-gentle-pulse pointer-events-none"></div>
+<!-- Inner Sage Ring -->
+<div class="absolute inset-8 rounded-full bg-white shadow-sm flex items-center justify-center border border-sage-border">
+<!-- Center Solid Core with Soundwave/Spark -->
+<div class="w-20 h-20 rounded-full bg-gradient-to-tr from-[#658543] to-[#7C9A5A] flex items-center justify-center shadow-[0_8px_20px_rgba(124,154,90,0.28)]">
+<span class="material-symbols-outlined text-white text-[32px]" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</div>
+</div>
+</div>
+<!-- Status Typography -->
+<div class="space-y-1.5 max-w-[310px]">
+<h1 class="text-[22px] font-bold text-on-surface tracking-tight leading-snug">
+          Menganalisis Bacaanmu...
+        </h1>
+<p class="text-[13.5px] font-normal text-neutral-sub leading-relaxed">
+          AI sedang memeriksa kelancaran makhraj dan ketepatan tajwid.
+        </p>
+</div>
+<!-- Subtle Progress Pill Dots -->
+<div class="flex items-center gap-1.5 mt-5">
+<span class="w-2 h-2 rounded-full bg-[#7C9A5A] animate-pulse"></span>
+<span class="w-2 h-2 rounded-full bg-[#7C9A5A]/50 animate-pulse" style="animation-delay: 0.25s;"></span>
+<span class="w-2 h-2 rounded-full bg-[#7C9A5A]/25 animate-pulse" style="animation-delay: 0.5s;"></span>
+</div>
+</section>
+<!-- Bottom Stack: Status Card & Motivation Hadits -->
+<div class="flex flex-col gap-3.5 w-full mt-auto pt-2 pb-3">
+<!-- Card Status Pemeriksaan (Rounded 3xl, Soft Shadow, Fine Border) -->
+<div class="bg-card-bg rounded-3xl p-5 border border-sage-border/80 shadow-[0_4px_24px_rgba(0,0,0,0.03)] flex flex-col gap-4">
+<!-- Header Info Card: Tag + Audio duration -->
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sage-tint border border-sage-border/70">
+<span class="material-symbols-outlined text-[#7C9A5A] text-[15px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-[12px] font-semibold text-[#4B662D]">Makharijul Huruf: Baik</span>
+</div>
+<span class="text-[12px] font-medium text-neutral-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">mic</span>
+            00:09
+          </span>
+</div>
+<!-- Target Verse Container (Amiri Arabic) -->
+<div class="bg-[#FAF8F6] rounded-2xl px-4 py-3.5 border border-black/[0.03]">
+<div class="flex justify-between items-center mb-1.5">
+<span class="text-[11px] font-semibold tracking-wider text-neutral-muted uppercase">QS. Al-Humazah: 1–2</span>
+<span class="text-[11px] font-medium text-[#7C9A5A]">3 Frasa Terverifikasi</span>
+</div>
+<p class="font-arabic text-[22px] text-on-surface leading-[46px] text-right font-normal" dir="rtl">
+            وَيْلٌ لِّكُلِّ هُمَزَةٍ لُّمَزَةٍ ﴿١﴾ الَّذِي جَمَعَ مَالًا وَعَدَّدَهُ ﴿٢﴾
+          </p>
+</div>
+<!-- Progress Bar & Indicator -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between text-[12px]">
+<span class="font-medium text-neutral-sub">Kelancaran &amp; Tajwid</span>
+<span class="font-bold text-[#4B662D]" id="ai-progress-label">65%</span>
+</div>
+<div class="w-full bg-[#EAE8E6] rounded-full h-2 overflow-hidden">
+<div class="bg-[#7C9A5A] h-full rounded-full transition-all duration-300 ease-out" id="ai-progress-bar" style="width: 65%;"></div>
+</div>
+</div>
+</div>
+<!-- Quote / Hadits Motivasi Card -->
+<div class="bg-white/70 rounded-2xl p-4 border border-black/[0.04] text-center flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-sage-tint flex items-center justify-center text-[#7C9A5A] mb-2">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+</div>
+<p class="text-[13px] text-on-surface/85 italic leading-relaxed max-w-[310px] mb-1">
+          “Sebaik-baik kalian adalah orang yang belajar Al-Qur'an dan mengajarkannya.”
+        </p>
+<span class="text-[11px] font-bold tracking-wider text-neutral-muted uppercase">
+          HR. Bukhari
+        </span>
+</div>
+</div>
+</main>
+<!-- Dynamic Progress Simulation -->
+<script>
+    (function() {
+      let progress = 65;
+      const bar = document.getElementById('ai-progress-bar');
+      const label = document.getElementById('ai-progress-label');
+
+      const interval = setInterval(() => {
+        if (progress < 100) {
+          progress += Math.floor(Math.random() * 4) + 1;
+          if (progress > 100) progress = 100;
+          if (bar) bar.style.width = progress + '%';
+          if (label) label.textContent = progress + '%';
+        } else {
+          clearInterval(interval);
+          // Redirect after 1 second for simulation
+          setTimeout(() => {
+            window.location.href = '../04_kalau_salah_maka_koreksi_ulangi_setoran_ritun/code.html';
+          }, 1000);
+        }
+      }, 500);
+    })();
+  </script>
+</body></html>

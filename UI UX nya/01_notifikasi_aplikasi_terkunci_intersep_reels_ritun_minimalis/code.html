@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+  <title>Ritun - Mindful Screen Intercept</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            badgeDark: '#2C3A29', /* Dark olive green for badge */
+            btnGreen: '#5A8622',  /* Vibrant green for button */
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"SF Pro Display"', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .instagram-gradient {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+  </style>
+</head>
+
+<body class="bg-[#0A0A0A] text-white font-sans antialiased overflow-hidden select-none m-0 p-0 h-screen w-screen flex justify-center items-center">
+  
+  <main class="relative w-full max-w-[430px] h-full max-h-[932px] overflow-hidden bg-[#0A0A0A] flex flex-col items-center shadow-2xl">
+    
+    <!-- Subtle ambient glows -->
+    <div class="absolute top-1/4 left-1/4 w-40 h-40 bg-yellow-500/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-40 h-40 bg-green-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <!-- Content Container -->
+    <div class="w-full h-full flex flex-col items-center justify-center px-8 z-10">
+      
+      <!-- Instagram Logo -->
+      <div class="w-20 h-20 rounded-[1.2rem] instagram-gradient p-[2px] mb-6 shadow-lg">
+        <div class="w-full h-full border-[3px] border-white rounded-[1.1rem] flex items-center justify-center">
+          <div class="w-8 h-8 border-[3px] border-white rounded-full relative">
+            <div class="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-white rounded-full"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="text-[28px] font-semibold tracking-tight text-white mb-4 leading-tight text-center">
+        Instagram<br/>Terkunci
+      </h2>
+      
+      <!-- Subtitle -->
+      <p class="text-[14px] text-gray-300 font-normal mb-12 leading-relaxed text-center max-w-[240px]">
+        Selesaikan setoran hafalan untuk membuka aplikasi ini.
+      </p>
+
+      <!-- Target Badge -->
+      <div class="w-full flex justify-center mb-16">
+        <div class="flex items-center gap-2.5 px-5 py-3.5 rounded-2xl bg-badgeDark shadow-inner">
+          <svg class="w-4 h-4 text-[#A7C888]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"></path>
+          </svg>
+          <span class="text-[14px] font-semibold text-white tracking-wide">QS. Al-Humazah: 1–3</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="w-full flex flex-col items-center space-y-6 mt-10">
+        <a href="../02_ai_cek_bacaan_ritun/code.html" class="w-full py-4 rounded-[1.2rem] bg-btnGreen hover:bg-[#689928] active:scale-[0.985] text-white font-semibold text-[16px] flex items-center justify-center gap-2.5 transition-all duration-200 shadow-[0_0_15px_rgba(90,134,34,0.3)]">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"></path>
+          </svg>
+          <span>Setor Hafalan</span>
+        </a>
+        
+        <a href="../dashboard_utama_ritun_soft_minimalist/code.html" class="text-gray-400 hover:text-gray-200 text-[12px] font-medium tracking-tight transition-colors duration-150">
+          Tutup Aplikasi
+        </a>
+      </div>
+
+    </div>
+
+    <!-- iOS Home Indicator -->
+    <div class="absolute bottom-2 inset-x-0 w-full flex justify-center pointer-events-none z-30">
+      <div class="w-32 h-1 bg-white/30 rounded-full"></div>
+    </div>
+
+  </main>
+</body>
+</html>

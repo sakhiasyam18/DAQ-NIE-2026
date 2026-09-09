@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritun - Project Dashboard MTQ 2026</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #059669;
+            /* Emerald 600 */
+            --primary-light: #10B981;
+            /* Emerald 500 */
+            --secondary: #0F172A;
+            /* Slate 900 */
+            --bg-color: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-main: #1E293B;
+            --text-muted: #64748B;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(158, 100%, 74%, 0.2) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(217, 100%, 74%, 0.2) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(158, 100%, 74%, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Nav & Header */
+        header {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 800px;
+            padding: 12px 24px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06), 0 2px 10px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            padding: 8px 16px;
+            border-radius: 50px;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            background: rgba(16, 185, 129, 0.08);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 5% 60px;
+        }
+
+        .badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: var(--secondary);
+            background: linear-gradient(135deg, var(--secondary) 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin-bottom: 40px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* UI/UX Grid */
+        .ui-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .ui-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ui-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .ui-image {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #F1F5F9;
+            aspect-ratio: 9/19;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ui-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .ui-image::after {
+            content: '🔍 Lihat Gambar';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.4);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(2px);
+        }
+
+        .ui-card:hover .ui-image img {
+            transform: scale(1.03);
+        }
+
+        .ui-card:hover .ui-image::after {
+            opacity: 1;
+        }
+
+        .ui-title {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        .btn-interactive {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-interactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.3);
+        }
+
+        /* Diagram Grid */
+        .diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .diagram-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .diagram-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .diagram-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 8px;
+        }
+
+        .diagram-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            object-fit: contain;
+            background: #F8FAFC;
+            padding: 10px;
+            border: 1px dashed #CBD5E1;
+        }
+
+        /* Modal / Lightbox */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            color: #94A3B8;
+            font-family: 'Inter', sans-serif;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .diagram-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            /* Simplified for mobile */
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo" style="text-decoration: none; color: var(--primary);">
+            <div class="logo-icon">R</div>
+            Ritun
+        </a>
+        <nav>
+            <a href="#poster">Poster</a>
+            <a href="#ui-grid">UI/UX Design</a>
+            <a href="#diagrams">Architecture & Flow</a>
+            <a href="#methodology">Methodology</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="badge" data-aos="fade-down">MTQ UM 2026 - Universitas Negeri Malang</div>
+        <h1 data-aos="fade-up" data-aos-delay="100">Self-Discipline App Berbasis Murajaah dengan
+            <span>Recite-to-Unlock</span>
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="200">Membantu generasi muda menjaga konsistensi hafalan Al-Qur'an dan
+            mengelola waktu di era distraksi digital melalui teknologi kecerdasan buatan.</p>
+    </section>
+
+    <!-- UI/UX Section -->
+    <section id="uiux">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Poster Karya & User Interface</h2>
+        </div>
+
+        <!-- POSTER FEATURED -->
+        <div id="poster" data-aos="fade-up" style="max-width: 1000px; margin: 0 auto 60px; scroll-margin-top: 100px;">
+            <div class="ui-card" style="padding: 25px;">
+                <div class="ui-image" onclick="openModal('Poster.png')"
+                    style="aspect-ratio: auto; background: transparent; padding: 0;">
+                    <img src="Poster.png" alt="Poster Utama Ritun"
+                        style="width: 100%; height: auto; border-radius: 12px; display: block;">
+                </div>
+            </div>
+        </div>
+        <div id="ui-grid" class="ui-grid">
+
+            <!-- 1. Dashboard -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="ui-image" onclick="openModal('UI UX nya/dashboard_utama_ritun_soft_minimalist/screen.png')">
+                    <img src="UI UX nya/dashboard_utama_ritun_soft_minimalist/screen.png" alt="Dashboard Utama"
+                        loading="lazy">
+                </div>
+                <div class="ui-title">1. Dashboard Utama</div>
+                <a href="UI UX nya/dashboard_utama_ritun_soft_minimalist/code.html" target="_blank"
+                    class="btn-interactive">Buka HTML Interaktif ✨</a>
+            </div>
+
+            <!-- 2. Pengaturan -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="ui-image"
+                    onclick="openModal('UI UX nya/halaman_pengaturan_ritun_soft_minimalist/screen.png')">
+                    <img src="UI UX nya/halaman_pengaturan_ritun_soft_minimalist/screen.png" alt="Pengaturan"
+                        loading="lazy">
+                </div>
+                <div class="ui-title">2. Pengaturan Kustomisasi</div>
+                <a href="UI UX nya/halaman_pengaturan_ritun_soft_minimalist/code.html" target="_blank"
+                    class="btn-interactive">Buka HTML Interaktif ✨</a>
+            </div>
+
+            <!-- 3. Notifikasi Lock Screen (01) -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="ui-image"
+                    onclick="openModal('UI UX nya/01_notifikasi_aplikasi_terkunci_intersep_reels_ritun_minimalis/screen.png')">
+                    <img src="UI UX nya/01_notifikasi_aplikasi_terkunci_intersep_reels_ritun_minimalis/screen.png"
+                        alt="Notifikasi Terkunci" loading="lazy">
+                </div>
+                <div class="ui-title">3. Apilkasi di Mulai dari Sini!</div>
+                <a href="UI UX nya/01_notifikasi_aplikasi_terkunci_intersep_reels_ritun_minimalis/code.html"
+                    target="_blank" class="btn-interactive">Buka HTML Interaktif ✨</a>
+            </div>
+
+            <!-- 4. AI Cek Bacaan (02) -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="ui-image" onclick="openModal('UI UX nya/02_ai_cek_bacaan_ritun/screen.png')">
+                    <img src="UI UX nya/02_ai_cek_bacaan_ritun/screen.png" alt="Cek Bacaan" loading="lazy">
+                </div>
+                <div class="ui-title">4. Setelah Setoran, AI Mengevaluasi Bacaan</div>
+                <a href="UI UX nya/02_ai_cek_bacaan_ritun/code.html" target="_blank" class="btn-interactive">Buka HTML
+                    Interaktif ✨</a>
+            </div>
+
+            <!-- 5. Koreksi (04) -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="500">
+                <div class="ui-image"
+                    onclick="openModal('UI UX nya/04_kalau_salah_maka_koreksi_ulangi_setoran_ritun/screen.png')">
+                    <img src="UI UX nya/04_kalau_salah_maka_koreksi_ulangi_setoran_ritun/screen.png" alt="Koreksi"
+                        loading="lazy">
+                </div>
+                <div class="ui-title">5. Jika Salah Baca, Maka Koreksi</div>
+                <a href="UI UX nya/04_kalau_salah_maka_koreksi_ulangi_setoran_ritun/code.html" target="_blank"
+                    class="btn-interactive">Buka HTML Interaktif ✨</a>
+            </div>
+
+            <!-- 6. Akses Dibuka (03) -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="600">
+                <div class="ui-image" onclick="openModal('UI UX nya/03_akses_dibuka_ritun/screen.png')">
+                    <img src="UI UX nya/03_akses_dibuka_ritun/screen.png" alt="Akses Dibuka" loading="lazy">
+                </div>
+                <div class="ui-title">6. Akses Dibuka (Sukses)</div>
+                <a href="UI UX nya/03_akses_dibuka_ritun/code.html" target="_blank" class="btn-interactive">Buka HTML
+                    Interaktif ✨</a>
+            </div>
+
+            <!-- 7. Progres -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="700">
+                <div class="ui-image" onclick="openModal('UI UX nya/halaman_progres_ritun_soft_minimalist/screen.png')">
+                    <img src="UI UX nya/halaman_progres_ritun_soft_minimalist/screen.png" alt="Progres" loading="lazy">
+                </div>
+                <div class="ui-title">7. Statistik & Progres Hafalan</div>
+                <a href="UI UX nya/halaman_progres_ritun_soft_minimalist/code.html" target="_blank"
+                    class="btn-interactive">Buka HTML Interaktif ✨</a>
+            </div>
+
+            <!-- 8. Overlay 45 menit (05) -->
+            <div class="ui-card" data-aos="fade-up" data-aos-delay="800">
+                <div class="ui-image"
+                    onclick="openModal('UI UX nya/05_setelah_45_menit_maka_instagram_terkunci_overlay_lock_screen_ritun_soft_minimalist/screen.png')">
+                    <img src="UI UX nya/05_setelah_45_menit_maka_instagram_terkunci_overlay_lock_screen_ritun_soft_minimalist/screen.png"
+                        alt="Lock Screen" loading="lazy">
+                </div>
+                <div class="ui-title">8. Lock Screen Berulang</div>
+                <a href="UI UX nya/05_setelah_45_menit_maka_instagram_terkunci_overlay_lock_screen_ritun_soft_minimalist/code.html"
+                    target="_blank" class="btn-interactive">Buka HTML Interaktif ✨</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diagrams Section -->
+    <section id="diagrams" style="background: white;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>System Architecture & Workflows</h2>
+            <p>Rancangan teknis dan pemodelan sistem di balik layar Ritun.</p>
+        </div>
+
+        <div class="diagram-grid">
+            <div class="diagram-card" data-aos="zoom-in" data-aos-delay="100" onclick="openModal('fix_Flowchart.png')">
+                <h3>Flowchart Sistem</h3>
+                <img src="fix_Flowchart.png" alt="Flowchart" loading="lazy">
+            </div>
+            <div class="diagram-card" data-aos="zoom-in" data-aos-delay="200"
+                onclick="openModal('fix_alur Pemrosesan Suara.png')">
+                <h3>Alur Pemrosesan Suara (AI)</h3>
+                <img src="fix_alur Pemrosesan Suara.png" alt="Alur Suara" loading="lazy">
+            </div>
+            <div class="diagram-card" data-aos="zoom-in" data-aos-delay="300" onclick="openModal('fix_ERD.png')">
+                <h3>Entity Relationship Diagram</h3>
+                <img src="fix_ERD.png" alt="ERD" loading="lazy">
+            </div>
+            <div class="diagram-card" data-aos="zoom-in" data-aos-delay="400"
+                onclick="openModal('fix_class_diagram.png')">
+                <h3>Class Diagram</h3>
+                <img src="fix_class_diagram.png" alt="Class Diagram" loading="lazy">
+            </div>
+            <div class="diagram-card" data-aos="zoom-in" data-aos-delay="500"
+                onclick="openModal('fix_Use_case_diagram.png')">
+                <h3>Use Case Diagram</h3>
+                <img src="fix_Use_case_diagram.png" alt="Use Case" loading="lazy">
+            </div>
+            <div class="diagram-card" id="methodology" data-aos="zoom-in" data-aos-delay="600"
+                onclick="openModal('fix_srcum_metode.png')">
+                <h3>Metodologi Scrum</h3>
+                <img src="fix_srcum_metode.png" alt="Scrum" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Ritun</h2>
+        <p>Aplikasi Inovatif Karya Mahasiswa Universitas Negeri Malang - MTQ UM 2026</p>
+        <p style="font-size: 0.9rem; margin-top: 20px;">© 2026. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <!-- Modal for viewing full images -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Modal Logic
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+
+        function openModal(imgSrc) {
+            modal.classList.add("active");
+            modalImg.src = imgSrc;
+            document.body.style.overflow = "hidden"; // Prevent scrolling
+        }
+
+        function closeModal() {
+            modal.classList.remove("active");
+            document.body.style.overflow = "auto";
+        }
+
+        // Prevent modal close when clicking image
+        modalImg.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (event) {
+            if (event.key === "Escape") {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
